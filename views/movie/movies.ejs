@@ -1,0 +1,81 @@
+<%- include('../partials/header.ejs') %>
+<script src="/js/sortmovie.js" defer></script>
+
+<div class="container p-5">
+    <h1 class="display-2 text-center p-5">NOW SHOWING</h1>
+    <div class="btn-group py-3">
+      <button class="btn btn-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by...
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" id="nameButton" href="#">Name</a></li>
+        <li><a class="dropdown-item" id="rateButton" href="#">Rate (13-18)</a></li>
+        <li><a class="dropdown-item" id="genreButton" href="#">Genre</a></li>
+      </ul>
+    </div>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3" id="one">
+      <% movies.sort((a, b) => (a.reldate > b.reldate) ? -1 : 1)%>
+      <% movies.forEach(function(movie){ %>  
+        <div class="col">
+          <div class="card h-100">
+            <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+              <img src="<%= movie.image %>" class="card-img-top">
+              <div class="card-body text-dark text-center">
+                <h5 class="card-title"><%= movie.name %></h5>
+                <p class="card-text"><%= movie.reldate %></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }); %> 
+    </div>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 d-none" id="two">
+      <% movies.sort((a, b) => (a.name > b.name) ? 1 : -1)%>
+      <% movies.forEach(function(movie){ %>  
+        <div class="col">
+          <div class="card h-100">
+            <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+              <img src="<%= movie.image %>" class="card-img-top">
+              <div class="card-body text-dark text-center">
+                <h5 class="card-title"><%= movie.name %></h5>
+                <p class="card-text"><%= movie.reldate %></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }); %> 
+    </div>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 d-none" id="three">
+      <% movies.sort((a, b) => (a.rate > b.rate) ? 1 : -1)%>
+      <% movies.forEach(function(movie){ %>  
+        <div class="col">
+          <div class="card h-100">
+            <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+              <img src="<%= movie.image %>" class="card-img-top">
+              <div class="card-body text-dark text-center">
+                <h5 class="card-title"><%= movie.name %></h5>
+                <p class="card-text"><%= movie.reldate %></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }); %> 
+    </div>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 d-none" id="four">
+      <% movies.sort((a, b) => (a.genre > b.genre) ? 1 : -1)%>
+      <% movies.forEach(function(movie){ %>  
+        <div class="col">
+          <div class="card h-100">
+            <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+              <img src="<%= movie.image %>" class="card-img-top">
+              <div class="card-body text-dark text-center">
+                <h5 class="card-title"><%= movie.name %></h5>
+                <p class="card-text"><%= movie.reldate %></p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% }); %> 
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

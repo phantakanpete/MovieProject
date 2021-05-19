@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+<div class="container p-5">
+    <h1 class="display-2 text-center p-5">PROMOTION</h1>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+        <% promotions.forEach(function(promotion){ %>  
+        <div class="col">
+            <div class="card h-100">    
+                <a href='/promotions/<%= promotion._id %>' class="text-decoration-none">
+                    <img src="<%= promotion.image %>" class="card-img-top">
+                    <div class="card-body text-dark">
+                        <h5><%= promotion.title %></h5>
+                        <p class="text-muted">Until: <%= promotion.utldate %></p>
+                    </div>
+                </a> 
+            </div>     
+        </div>
+        <% }); %> 
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

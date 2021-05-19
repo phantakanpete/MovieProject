@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400&display=swap');
+
+body {
+    font-family: 'Kanit', sans-serif;
+}
+
+.card:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}

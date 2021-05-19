@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs') %>
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3">
+    <div class="row flex-lg-row-reverse align-items-center g-5 p-3">
+      <div class="col-lg-6">
+        <h3 class="display-5 mb-3"><%= movies.name %></h3>
+        <div class="px-1 py-1">    
+            <p><span class="text-primary">Genre: </span><%= movies.genre %></p>
+            <p><span class="text-primary">Rate: </span><%= movies.rate %></p>
+            <p><span class="text-primary">Duration: </span><%= movies.duration %></p>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/movies/showtime/<%= movies._id%>" class="btn btn-dark btn-lg px-4 me-md-2">Check the available cinemas</a>
+        </div>
+      </div>
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="<%= movies.image %>" class="d-block mx-lg-auto img-fluid shadow" alt="Movie Image" width="300" height="300" loading="lazy">
+      </div>
+    </div>
+</div>
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3">
+    <div class="row flex-lg-row align-items-center p-3">
+        <div class="col-lg-6">
+            <h3 class="display-3">SYNOPSIS :</h3>
+        </div>  
+        <div class="col-10 col-sm-8 col-lg-6">
+            <div class="px-1 py-1">    
+                <p class="fs-6"><%= movies.desc %></p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3">
+    <div class="row flex-lg-row align-items-center p-3">
+        <div class="col-lg-6">
+            <h3 class="display-3">TRAILER :</h3>
+        </div>  
+        <div class="col-10 col-sm-8 col-lg-6">
+            <div class="ratio ratio-16x9">
+                <iframe src="<%= movies.trailer %>" title="YouTube video" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer.ejs') %>

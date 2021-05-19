@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+<div class="container bg-white shadow rounded my-5">
+    <div class="text-center lh-1 mb-3 pt-4">
+        <h1 class="display-5"><%= promotions.title%></h1>
+        <p>Until: <%= promotions.utldate%></p>
+    </div>
+    <img src="<%= promotions.image %>" class="d-block mx-auto img-fluid shadow rounded my-4" width="500" height="500">
+    <div class="p-5">            
+        <p class="text-primary">Descriptions:</p>
+        <p class="ps-5"><%= promotions.desc%></p>
+        <p class="text-primary">This promotion can only apply to this following movies:</p>
+        <% for(i=0;i<promotions.movie.length;i++){ %>
+            <ul class="ps-5">
+                <li><%= promotions.movie[i] %></li>
+            </ul>
+        <% } %>
+        <p class="text-primary">This promotion can use until:</p>
+        <p class="ps-5"><%= promotions.utldate%></p>
+        <p class="text-primary">Available branches :</p>
+        <p class="ps-5"><%= promotions.branch%></p>
+    </div>   
+</div>
+<%- include('../partials/footer.ejs') %>

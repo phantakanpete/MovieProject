@@ -1,0 +1,40 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5 my-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 py-5">
+            <img src="https://gizmocrunch.com/wp-content/uploads/2021/02/ddnshvy-5d166208-57a2-4e22-aed4-7b092564ccb7.jpg" class="card-img">
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form action="/signup" method="POST" class="p-4 p-md-5 border bg-white shadow">
+                <h2 class="display-2 pt-2">SIGNUP</h2>
+                <small class="text-muted">Get the best experience</small>
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="username">
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="email">
+                    <label for="floatingEmail">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="firstname" class="form-control" id="floatingFirstname" placeholder="firstname">
+                    <label for="floatingFirstname">Firstname</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="lastname" class="form-control" id="floatingLastname" placeholder="lastname">
+                    <label for="floatingLastname">Lastname</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-dark">Sign up</button>
+                <hr class="my-4">
+                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<%- include('partials/footer.ejs') %>
