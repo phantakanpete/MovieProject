@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3">
+    <div class="row flex-lg-row align-items-center p-2">
+        <div class="col-lg-4 py-3 text-center">
+            <img src="/images/defaultprofile.png" class="rounded-circle" width="200px">
+            <br><a href="#">Edit proflie</a>
+        </div>  
+        <div class="col-10 col-sm-8">
+            <div class="px-1 py-1">    
+                <h2><%= user.firstname + ' ' + user.lastname %></h2>
+                <p>
+                    <a href="mailto: <%= user.email %>"> <%= user.email %></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs px-3">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Movie history</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Liked movie</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="#">My comment</a>
+        </li>
+    </ul>
+</div>
+<%- include('../partials/footer.ejs') %>

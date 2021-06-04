@@ -44,4 +44,28 @@
         </div>
     </div>
 </div>
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3">
+    <div class="p-3">
+        <h3 class="display-3">COMMENTS :</h3>
+        <hr class="featurette-divider">
+        <% movies.comments.forEach(function(comment){ %>
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <div class="float-end">
+                    <!-- <i class="far fa-thumbs-up px-2"></i>
+                    <i class="far fa-thumbs-down px-2"></i> -->
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <strong><%= comment.author.username + ' : ' %></strong>
+                <p><%= comment.text %></p>
+            </div>
+        </div>   
+        <% }); %>
+        <a href="/movies/<%= movies._id %>/comments/new" class="btn btn-outline-dark">Add a comment</a>
+    </div>  
+</div>
 <%- include('../partials/footer.ejs') %>

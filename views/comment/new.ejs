@@ -1,0 +1,12 @@
+<%- include('../partials/header.ejs') %>
+<div class='container'>
+<form action='/movies/<%= movie._id %>/comments' method='POST'>
+      <label  class="form-label">Comment</label>
+      <input type="text" class="form-control" name='comment[text]' placeholder='Comment'>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href='/movies'>Go back</a>
+  </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>

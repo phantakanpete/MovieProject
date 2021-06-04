@@ -6,11 +6,13 @@ const   express         = require('express'),
         LocalStrategy   = require('passport-local'),
         Movie           = require('./models/movie'),
         Promotion       = require('./models/promotion'),
+        Comment         = require('./models/comment'),
         User            = require('./models/user'),
         zeedDB          = require('./zeed');
         
 const   homeRoutes      = require('./routes/home'),
         movieRoutes     = require('./routes/movies'),
+        commentRoutes   = require('./routes/comments'),
         promoRoutes     = require('./routes/promotions');
 
 mongoose.connect('mongodb://localhost/moviesProject');
@@ -40,6 +42,7 @@ app.use(function(req, res, next){
 
 app.use('/', homeRoutes);
 app.use('/movies', movieRoutes);
+app.use('/movies/:id/comments', commentRoutes);
 
 app.get('/cinemas', function(req, res){
     res.render('cinemas.ejs');

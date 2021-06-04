@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 });
 
 router.get('/:id', function(req, res){
-    Movie.findById(req.params.id, function(err, foundMovie){
+    Movie.findById(req.params.id).populate('comments').exec(function(err, foundMovie){
         if(err){
             console.log(err);
         }else{

@@ -55,4 +55,19 @@ router.get('/logout', function(req, res){
     res.redirect('/');
 });
 
+router.get('/user/:id', function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            console.log(err);
+            res.redirect('/');
+        }else{
+            res.render('user/profile.ejs', {user: foundUser});
+        }
+    });
+});
+
+// router.post('/user/edit/:id', function(req, res){
+
+// });
+
 module.exports = router;
