@@ -50,10 +50,6 @@ app.get('/cinemas', function(req, res){
 
 app.use('/promotions', promoRoutes);
 
-app.get('/news', function(req, res){
-    res.render('news/news.ejs');
-});
-
 app.listen('4800', function(){
     console.log('Server is running...');
 });

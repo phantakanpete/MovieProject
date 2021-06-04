@@ -65,7 +65,27 @@
             </div>
         </div>   
         <% }); %>
-        <a href="/movies/<%= movies._id %>/comments/new" class="btn btn-outline-dark">Add a comment</a>
+
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Add a comment</button>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Add a comment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action='/movies/<%= movies._id %>' method='POST'>
+                        <input type="text" class="form-control" name='comment[text]' placeholder='Comment' required>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark">Add</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>  
 </div>
 <%- include('../partials/footer.ejs') %>
