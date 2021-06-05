@@ -2,9 +2,28 @@ const express       = require('express'),
       router        = express.Router(),
       Movie         = require('../models/movie'),
       Promotion     = require('../models/promotion'),
+      Comment       = require('../models/comment'),
       User          = require('../models/user'),
+      multer        = require('multer'),
+      path          = require('path'),
+      storage       = multer.diskStorage({
+                    destination: function(req, file, callback){
+                        callback(null,'./public/uploads/');
+                    },
+                    filename: function(req, file, callback){
+                        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+                    }
+      }),
+      imagefilter = function(req, file, callback){
+            if(!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)){
+                return callback(new Error('Your image file type is not allowed!'), false);
+            }
+            callback(null, true);
+      },
+      upload        = multer({storage: storage, fileFilter: imagefilter}),
       passport      = require('passport');
 
+//home
 router.get('/', function(req, res){
     Movie.find({}, function(err, movieLists){
         if(err){
@@ -21,6 +40,7 @@ router.get('/', function(req, res){
     });
 });
 
+//login,signup
 router.get('/signup', function(req, res){
     res.render('signup.ejs');
 });
@@ -55,6 +75,7 @@ router.get('/logout', function(req, res){
     res.redirect('/');
 });
 
+//userinfo
 router.get('/user/:id', function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
@@ -66,8 +87,45 @@ router.get('/user/:id', function(req, res){
     });
 });
 
-// router.post('/user/edit/:id', function(req, res){
+router.get('/user/edit/:id', function(req, res){
+    User.findById(req.params.id, function(err, foundUser){
+        if(err){
+            console.log(err);
+            res.redirect('/');
+        }else{
+            res.render('user/edit.ejs', {user: foundUser});
+        }
+    });
+});
 
-// });
+router.put('/user/:id', upload.single('image'), function(req, res){
+    if(req.file){
+        req.body.user.profileimg = '/uploads/'+ req.file.filename;
+    }
+    User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUserInfo){
+        if(err){
+            res.redirect('/');
+        }else{
+            // Comment.find({}, function(err, comments){
+            //     if(err){
+            //         console.log(err);
+            //     }else{
+            //         if(comments.author.id == req.params.id){
+            //             Comment.findByIdAndUpdate(comments._id, req.body.user.profileimg, function(err, updatedProfile){
+            //                 if(err){
+            //                     res.redirect('/');
+            //                 }else{
+            //                     res.redirect('/user/'+req.params.id);
+            //                 }
+            //             });
+            //         }else{
+            //             res.redirect('/user/'+req.params.id);
+            //         }
+            //     }
+            // });
+            res.redirect('/user/'+req.params.id);
+        }
+    });
+});
 
 module.exports = router;

@@ -2,6 +2,7 @@ const   express         = require('express'),
         app             = express(),
         bodyParser      = require('body-parser'),
         mongoose        = require('mongoose'),
+        methodOverride  = require('method-override'),
         passport        = require('passport'),
         LocalStrategy   = require('passport-local'),
         Movie           = require('./models/movie'),
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://localhost/moviesProject');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 //zeedDB();
 
