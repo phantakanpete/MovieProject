@@ -95,14 +95,7 @@ router.get('/user/:id', function(req, res){
                     req.flash('error', 'Something went wrong.');
                     res.redirect('/');
                 }else{
-                    Movie.find({}, function(err, foundMovie){
-                        if(err){
-                            req.flash('error', 'Something went wrong.');
-                            res.redirect('/');
-                        }else{
-                            res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movie: foundMovie});
-                        }
-                    });
+                   res.render('user/profile.ejs', {user: foundUser, comments: foundComment});
                 }
             });
         }
