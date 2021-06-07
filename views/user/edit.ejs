@@ -14,15 +14,15 @@
                 <div class="row py-2">    
                     <div class="col-md pb-2">
                         <label class="form-label">Firstname</label>
-                        <input type="text" class="form-control" name="user[firstname]" placeholder="<%= user.firstname %>" value="<%= user.firstname %>">
+                        <input type="text" class="form-control" name="user[firstname]" value="<%= user.firstname %>" required>
                     </div>
                     <div class="col-md">
                         <label class="form-label">Lastname</label>
-                        <input type="text" class="form-control" name="user[lastname]" placeholder="<%= user.lastname %>" value="<%= user.lastname %>">
+                        <input type="text" class="form-control" name="user[lastname]" value="<%= user.lastname %>" required>
                     </div>
                 </div>
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="user[email]" placeholder="<%= user.email %>" value="<%= user.email %>">
+                <input type="email" class="form-control" name="user[email]" value="<%= user.email %>" required>
                 <div class="float-end my-2">
                     <button type="submit" class="btn btn-dark">Submit changes</button>
                     <a href="/user/<%= user._id %>" class="btn btn-outline-dark">Back</a>

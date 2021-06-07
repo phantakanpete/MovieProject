@@ -1,7 +1,8 @@
 const express = require('express'),
       router  = express.Router(),
-      Movie   = require('../models/movie');
-      Comment = require('../models/comment');
+      Movie   = require('../models/movie'),
+      Comment = require('../models/comment'),
+      middleware = require('../middleware');
 
 router.get('/', function(req, res){
     Movie.find({}, function(err, movieLists){
@@ -33,7 +34,8 @@ router.get('/showtime/:id', function(req, res){
     });
 });
 
-router.post('/:id', isLoggedIn, function(req, res){
+//add comment in movie
+router.post('/:id', middleware.isLoggedIn, function(req, res){
     Movie.findById(req.params.id, function(err, foundMovie){
         if(err){
             console.log(err);
@@ -49,18 +51,12 @@ router.post('/:id', isLoggedIn, function(req, res){
                     comment.save();
                     foundMovie.comments.push(comment);
                     foundMovie.save();
+                    req.flash('success', 'Create comment succeed.');
                     res.redirect('/movies/'+ foundMovie._id);
                 }
             });
         }
     });
 });
-
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-}
 
 module.exports = router;

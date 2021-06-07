@@ -1,4 +1,6 @@
 <%- include('../partials/header.ejs') %>
+<script src="/js/viewinfo.js" defer></script>
+
 <br>
 <div class="container col-xxl-8 bg-white border shadow rounded-3">
     <div class="row flex-lg-row justify-content-center py-3">
@@ -17,14 +19,33 @@
     </div>
     <ul class="nav nav-tabs px-3">
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#">Movie history</a>
+          <a class="nav-link text-dark active" id="movhistory" href="#">Movie history</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#">Liked movie</a>
+          <a class="nav-link text-dark" id="likemovie" href="#">Liked movie</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" href="#">My comment</a>
+            <a class="nav-link text-dark" id="mycomment" href="#">My comment</a>
         </li>
     </ul>
+    <div class="d-none" id="three">
+        <% comments.forEach(function(comment){ %>
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <div class="float-end">
+                        <!-- <i class="far fa-thumbs-up px-2"></i>
+                        <i class="far fa-thumbs-down px-2"></i> -->
+                        <!-- <i class="fas fa-ellipsis-h"></i> -->
+                    </div>
+                    <strong><%= comment.author.username + ' : ' %></strong>
+                    <p><%= comment.text %></p>
+                </div>
+            </div>        
+        <% }); %>
+        
+    </div>
 </div>
 <%- include('../partials/footer.ejs') %>

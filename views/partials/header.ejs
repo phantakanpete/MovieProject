@@ -39,15 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login-Signup</a>
                     </li>
-                </ul>
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input type="text" class="form-control d-flex" placeholder="Search Movie..." aria-label="Search Movie" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-dark" type="button" id="button-addon2">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>  
-                </form>  
+                </ul> 
                 <% }else { %>
                     <li class="nav-item">
                         <div class="dropdown"> 
@@ -59,15 +51,33 @@
                         </div>  
                     </li>
                 </ul>   
+                <% } %>
                 <form class="d-flex">
                     <div class="input-group">
-                        <input type="text" class="form-control d-flex" id="searchBar" placeholder="Search Movie..." aria-label="Search Movie" aria-describedby="button-addon">
+                        <input type="text" class="form-control d-flex" placeholder="Search Movie..." aria-label="Search Movie" aria-describedby="button-addon2">
                         <button class="btn btn-outline-dark" type="button" id="button-addon2">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>  
-                </form>  
-                <% } %>
+                </form> 
             </div>
         </div>
     </nav>
+    <div class="container">
+        <% if(error && error.length > 0) { %>
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="px-3">
+                    <%= error %>
+                </div>
+            </div>
+        <% } %>   
+        <% if(success && success.length > 0) { %>
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <i class="fas fa-check-circle"></i>
+                <div class="px-3">
+                    <%= success %>
+                </div>
+            </div>    
+        <% } %> 
+    </div>

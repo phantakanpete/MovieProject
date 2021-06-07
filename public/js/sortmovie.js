@@ -6,13 +6,13 @@
 // }
 
 
-let nameButton = document.getElementById('nameButton');
-let rateButton = document.getElementById('rateButton');
-let genreButton = document.getElementById('genreButton');
-let one = document.getElementById("one");
-let two = document.getElementById("two");
-let three = document.getElementById("three");
-let four = document.getElementById("four");
+let nameButton = document.querySelector('#nameButton');
+    rateButton = document.querySelector('#rateButton'),
+    genreButton = document.querySelector('#genreButton'),
+    one = document.getElementById("one"),
+    two = document.getElementById("two"),
+    three = document.getElementById("three"),
+    four = document.getElementById("four");
 
 nameButton.addEventListener("click", function(){
     if(!one.classList.contains("d-none")){

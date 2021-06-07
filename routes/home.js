@@ -1,3 +1,5 @@
+const comment = require('../models/comment');
+
 const express       = require('express'),
       router        = express.Router(),
       Movie         = require('../models/movie'),
@@ -49,10 +51,11 @@ router.post('/signup', function(req, res){
     const newUser = new User({username: req.body.username, email: req.body.email, firstname: req.body.firstname, lastname: req.body.lastname});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
             res.redirect('/signup');
         }else{
             passport.authenticate('local')(req, res, function(){
+                req.flash('success', 'Create account completed, now login.');
                 res.redirect('/login');
             });
         }
@@ -66,12 +69,17 @@ router.get('/login', function(req, res){
 router.post('/login', passport.authenticate('local',
     {
         successRedirect: '/',
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        successFlash: true,
+        failureFlash: true,
+        successFlash: 'Welcome to Paradis.',
+        failureFlash: 'Invaild username or password'
     }), function(res, res){
 });
 
 router.get('/logout', function(req, res){
     req.logout();
+    req.flash('success', 'You have logged out.');
     res.redirect('/');
 });
 
@@ -79,10 +87,24 @@ router.get('/logout', function(req, res){
 router.get('/user/:id', function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
-            console.log(err);
+            req.flash('error', 'Something went wrong.');
             res.redirect('/');
         }else{
-            res.render('user/profile.ejs', {user: foundUser});
+            Comment.find().where('author.id').equals(foundUser._id).exec(function(err, foundComment){
+                if(err){
+                    req.flash('error', 'Something went wrong.');
+                    res.redirect('/');
+                }else{
+                    Movie.find({}, function(err, foundMovie){
+                        if(err){
+                            req.flash('error', 'Something went wrong.');
+                            res.redirect('/');
+                        }else{
+                            res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movie: foundMovie});
+                        }
+                    });
+                }
+            });
         }
     });
 });
@@ -104,6 +126,7 @@ router.put('/user/:id', upload.single('image'), function(req, res){
     }
     User.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUserInfo){
         if(err){
+            req.flash('error', 'Edit failed.');
             res.redirect('/');
         }else{
             // Comment.find({}, function(err, comments){
@@ -111,18 +134,19 @@ router.put('/user/:id', upload.single('image'), function(req, res){
             //         console.log(err);
             //     }else{
             //         if(comments.author.id == req.params.id){
-            //             Comment.findByIdAndUpdate(comments._id, req.body.user.profileimg, function(err, updatedProfile){
+            //             // const update = { author.profileimg: req.body.user.profileimg };
+            //             Comment.findOneAndUpdate(comments.author.id, req.body.user.profileimg, function(err, updatedProfile){
             //                 if(err){
             //                     res.redirect('/');
             //                 }else{
             //                     res.redirect('/user/'+req.params.id);
             //                 }
             //             });
-            //         }else{
-            //             res.redirect('/user/'+req.params.id);
             //         }
+            //         res.redirect('/user/'+req.params.id);
             //     }
             // });
+            req.flash('success', 'Edit success.');
             res.redirect('/user/'+req.params.id);
         }
     });
