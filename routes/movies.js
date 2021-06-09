@@ -14,6 +14,38 @@ router.get('/', function(req, res){
     });
 });
 
+router.get('/sortByname', function(req, res){
+    Movie.find({}, function(err, movieLists){
+        if(err){
+            console.log(err);
+        }else{
+            movieLists.sort((a, b) => (a.name > b.name) ? 1 : -1);
+            res.render('movie/sortByname.ejs', {movies: movieLists});
+        }
+    });
+});
+
+router.get('/sortByrate', function(req, res){
+    Movie.find({}, function(err, movieLists){
+        if(err){
+            console.log(err);
+        }else{
+            movieLists.sort((a, b) => (a.rate > b.rate) ? 1 : -1);
+            res.render('movie/sortByrate.ejs', {movies: movieLists});
+        }
+    });
+});
+
+router.get('/sortBygenre', function(req, res){
+    Movie.find({}, function(err, movieLists){
+        if(err){
+            console.log(err);
+        }else{
+            res.render('movie/sortBygenre.ejs', {movies: movieLists});
+        }
+    });
+});
+
 router.get('/:id', function(req, res){
     Movie.findById(req.params.id).populate('comments').exec(function(err, foundMovie){
         if(err){

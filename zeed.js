@@ -26,7 +26,7 @@ const list = [
     {
         name: "Black Widow",
         image: "https://www.joblo.com/assets/images/joblo/posters/2020/03/2EF9FAE7-B888-4DBA-868D-B4E289BAE769.jpeg",
-        reldate: "2021-05-17",
+        reldate: "2021-07-19",
         genre: "Action, Sci-Fi",
         rate: "13",
         duration: "133 Mins",
@@ -46,7 +46,7 @@ const list = [
     {
         name: "Tenet",
         image: "https://www.joblo.com/assets/images/joblo/posters/2020/08/teneposterfinal7.jpg",
-        reldate: "2021-05-17",
+        reldate: "2021-01-02",
         genre: "Action, Thriller",
         rate: "13",
         duration: "150 Mins",
@@ -56,7 +56,7 @@ const list = [
     {
         name: "Godzilla vs Kong",
         image: "https://www.joblo.com/assets/images/joblo/posters/2021/03/godzilla-kong-poster.jpg",
-        reldate: "2021-05-17",
+        reldate: "2021-04-14",
         genre: "Action, Thriller",
         rate: "13",
         duration: "113 Mins",
@@ -66,7 +66,7 @@ const list = [
     {
         name: "Mortal Kombat",
         image: "https://www.joblo.com/assets/images/joblo/posters/2021/03/mortal-kombat-2021-poster-group.jpg",
-        reldate: "2021-05-17",
+        reldate: "2021-05-05",
         genre: "Action, Thriller, Sci-Fi",
         rate: "18",
         duration: "110 Mins",
@@ -76,7 +76,7 @@ const list = [
     {
         name: "Zack Snyder's Justice League",
         image: "https://www.joblo.com/assets/images/joblo/posters/2021/03/Zack-Snyder-Justice-League-Poster-Key-Art.jpg",
-        reldate: "2021-05-17",
+        reldate: "2021-02-14",
         genre: "Action, Adventure, Fantasy",
         rate: "18",
         duration: "242 Mins",
@@ -86,7 +86,7 @@ const list = [
     {
         name: "The Suicide Squad",
         image: "https://www.joblo.com/assets/images/joblo/posters/2021/03/The-Suicide-Squad-poster-913.jpg",
-        reldate: "2021-05-17",
+        reldate: "2021-08-21",
         genre: "Action, Comedy",
         rate: "18",
         duration: "XX Mins",
@@ -163,29 +163,13 @@ const promolist = [
 ];
 
 function zeedDB(){
-    // Movie.remove({}, function(err){
-    //     if(err){
-    //         console.log(err);
-    //     }else{
-    //         console.log('Remove completed');
-    //         list.forEach(function(zeed){
-    //             Movie.create(zeed, function(err, movie){
-    //                 if(err){
-    //                     console.log(err);
-    //                 }else{
-    //                     console.log('Add completed');
-    //                 }    
-    //             });
-    //         });
-    //     }
-    // });
-    Promotion.remove({}, function(err){
+    Movie.remove({}, function(err){
         if(err){
             console.log(err);
         }else{
             console.log('Remove completed');
-            promolist.forEach(function(zeed){
-                Promotion.create(zeed, function(err, promotion){
+            list.forEach(function(zeed){
+                Movie.create(zeed, function(err, movie){
                     if(err){
                         console.log(err);
                     }else{
@@ -195,6 +179,22 @@ function zeedDB(){
             });
         }
     });
+    // Promotion.remove({}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         console.log('Remove completed');
+    //         promolist.forEach(function(zeed){
+    //             Promotion.create(zeed, function(err, promotion){
+    //                 if(err){
+    //                     console.log(err);
+    //                 }else{
+    //                     console.log('Add completed');
+    //                 }    
+    //             });
+    //         });
+    //     }
+    // });
 }
 
 module.exports = zeedDB;

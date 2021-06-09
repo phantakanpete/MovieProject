@@ -113,7 +113,7 @@ router.get('/user/edit/:id', function(req, res){
     });
 });
 
-router.put('/user/:id', upload.single('image'), function(req, res){
+router.put('/user/:id', upload.single('profileimg'), function(req, res){
     if(req.file){
         req.body.user.profileimg = '/uploads/'+ req.file.filename;
     }
@@ -122,20 +122,12 @@ router.put('/user/:id', upload.single('image'), function(req, res){
             req.flash('error', 'Edit failed.');
             res.redirect('/');
         }else{
-            // Comment.find({}, function(err, comments){
+            // Comment.findByIdAndUpdate({'author.id': updatedUserInfo._id}, function(err, updatedAuthorInfo){
             //     if(err){
-            //         console.log(err);
+            //         req.flash('error', 'Something went wrong.');
+            //         res.redirect('/');
             //     }else{
-            //         if(comments.author.id == req.params.id){
-            //             // const update = { author.profileimg: req.body.user.profileimg };
-            //             Comment.findOneAndUpdate(comments.author.id, req.body.user.profileimg, function(err, updatedProfile){
-            //                 if(err){
-            //                     res.redirect('/');
-            //                 }else{
-            //                     res.redirect('/user/'+req.params.id);
-            //                 }
-            //             });
-            //         }
+            //         req.flash('success', 'Edit success.');
             //         res.redirect('/user/'+req.params.id);
             //     }
             // });
