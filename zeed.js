@@ -165,31 +165,49 @@ const promolist = [
 ];
 
 const theatrelist = [
+    //sina cinema
     {
         name: "Cinema 1",
         showtime: ["17.30","19.30","20.30"],
         movie: "60c062b061711c2698b043e0",
-        cinema: "60c0873f34b84e1f94bf6d99"
+        cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 2",
         showtime: ["10.30","11.30","12.30"],
         movie: "60c062b061711c2698b043e1",
-        cinema: "60c0873f34b84e1f94bf6d99"
+        cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 3",
         showtime: ["11.00","13.00","15.00"],
         movie: "60c062b061711c2698b043e2",
-        cinema: "60c0873f34b84e1f94bf6d99"
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    //rose cinema
+    {
+        name: "Cinema 1",
+        showtime: ["16.30","19.30","21.30"],
+        movie: "60c062b061711c2698b043e0",
+        cinema: "60c09f0f81fbfb20d0553fdb"
     }
 ];
 
 const cinemalist = [
     {
         name: "Paradis Cinema Wall Sina",
-        img: "https://img.wattpad.com/b0062755d42f3f37654e7df448ed87403eb8da0f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5378662d59686d32736d663876513d3d2d3330373538363637302e313437313531666535343339313533363731353734303738343932342e706e67?s=fit&w=720&h=720",
-        desc: "It's just another one cinema"
+        img: "https://qph.fs.quoracdn.net/main-qimg-26bdface26f01e9affea2008966a2261",
+        desc: "The people who live here are the rich people. The King’s palace is here, too. It’s the last line of defence for humanity against the Titans. The cities of wall Sina are protected by the Military Police, who work under the King. The Underground cities are poorer and prone to criminal activity."
+    },
+    {
+        name: "Paradis Cinema Wall Rose",
+        img: "https://qph.fs.quoracdn.net/main-qimg-bdbaf2c9e7af3e8d1ffb89b3214da0f5",
+        desc: "Wall Rose is the wall that protects the middle class people. The residents here live in neither poverty, nor luxury. This wall is the second line of defence for humanity against the Titans."
+    },
+    {
+        name: "Paradis Cinema Wall Maria",
+        img: "https://qph.fs.quoracdn.net/main-qimg-c48cae7aca5eac4c164aeb24e64744eb",
+        desc: "Wall Maria is the wall that protects the lower class people basically the poor people from Titans. The residents who live there live more difficult lives than the people in the other walls, and, should the walls ever be breached one day, would be in the most danger from Titans."
     }
 ];
 
