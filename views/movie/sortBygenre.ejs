@@ -1,4 +1,6 @@
 <%- include('../partials/header.ejs') %>
+<script src="/js/sortBygenre.js" defer></script>
+
 <div class="container p-5">
     <h1 class="display-2 text-center p-5">NOW SHOWING</h1>
     <div class="d-flex">  
@@ -17,11 +19,11 @@
                 Genre...
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" id="actionb" href="#">Action</a></li>
-                <li><a class="dropdown-item" id="thrillerb" href="#">Thriller</a></li>
-                <li><a class="dropdown-item" id="scifib" href="#">Sci-Fi</a></li>
-                <li><a class="dropdown-item" id="adventureb" href="#">Adventure</a></li>
-                <li><a class="dropdown-item" id="comedyb" href="#">Comedy</a></li>
+                <li><button class="dropdown-item" id="actionb">Action</button></li>
+                <li><button class="dropdown-item" id="thrillerb">Thriller</button></li>
+                <li><button class="dropdown-item" id="scifib">Sci-Fi</button></li>
+                <li><button class="dropdown-item" id="adventureb">Adventure</button></li>
+                <li><button class="dropdown-item" id="comedyb">Comedy</button></li>
             </ul>
         </div>
     </div>      
