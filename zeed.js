@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Movie = require('./models/movie');
 const Promotion = require('./models/promotion');
+const Theatre  = require('./models/theatre');
+const Cinema  = require('./models/cinema');
 
 const list = [
     {
@@ -162,23 +164,52 @@ const promolist = [
     }
 ];
 
+const theatrelist = [
+    {
+        name: "Cinema 1",
+        showtime: ["17.30","19.30","20.30"],
+        movie: "60c062b061711c2698b043e0",
+        cinema: "60c0873f34b84e1f94bf6d99"
+    },
+    {
+        name: "Cinema 2",
+        showtime: ["10.30","11.30","12.30"],
+        movie: "60c062b061711c2698b043e1",
+        cinema: "60c0873f34b84e1f94bf6d99"
+    },
+    {
+        name: "Cinema 3",
+        showtime: ["11.00","13.00","15.00"],
+        movie: "60c062b061711c2698b043e2",
+        cinema: "60c0873f34b84e1f94bf6d99"
+    }
+];
+
+const cinemalist = [
+    {
+        name: "Paradis Cinema Wall Sina",
+        img: "https://img.wattpad.com/b0062755d42f3f37654e7df448ed87403eb8da0f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5378662d59686d32736d663876513d3d2d3330373538363637302e313437313531666535343339313533363731353734303738343932342e706e67?s=fit&w=720&h=720",
+        desc: "It's just another one cinema"
+    }
+];
+
 function zeedDB(){
-    Movie.remove({}, function(err){
-        if(err){
-            console.log(err);
-        }else{
-            console.log('Remove completed');
-            list.forEach(function(zeed){
-                Movie.create(zeed, function(err, movie){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log('Add completed');
-                    }    
-                });
-            });
-        }
-    });
+    // Movie.remove({}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         console.log('Remove completed');
+    //         list.forEach(function(zeed){
+    //             Movie.create(zeed, function(err, movie){
+    //                 if(err){
+    //                     console.log(err);
+    //                 }else{
+    //                     console.log('Add completed');
+    //                 }    
+    //             });
+    //         });
+    //     }
+    // });
     // Promotion.remove({}, function(err){
     //     if(err){
     //         console.log(err);
@@ -195,6 +226,38 @@ function zeedDB(){
     //         });
     //     }
     // });
+    // Cinema.remove({}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         console.log('Remove completed');
+    //         cinemalist.forEach(function(zeed){
+    //             Cinema.create(zeed, function(err, cinema){
+    //                 if(err){
+    //                     console.log(err);
+    //                 }else{
+    //                     console.log('Add completed');
+    //                 }    
+    //             });
+    //         });
+    //     }
+    // });
+    Theatre.remove({}, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('Remove completed');
+            theatrelist.forEach(function(zeed){
+                Theatre.create(zeed, function(err, theatre){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log('Add completed');
+                    }    
+                });
+            });
+        }
+    });
 }
 
 module.exports = zeedDB;

@@ -19,22 +19,31 @@
     </div>
 </div>
 <br>
-<div class="container col-xxl-8 bg-white border shadow rounded-3">
-    <h4 class="py-3 text-primary"><i class="fas fa-map-marker-alt"></i> Paradis Cinema Wall Sina</h4>
-    <div class="row flex-lg-row align-items-center p-3">
-        <div class="col-lg-2">
-            <h5>Digital Cinema</h5>
-        </div>  
-        <div class="col border-start">
-            <div class="px-1 py-1">    
-                <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
-                <a href="#" class="btn btn-dark" type="button">17.40</a>
-                <a href="#" class="btn btn-dark" type="button">19.40</a>
-                <a href="#" class="btn btn-dark" type="button">20.40</a>
-            </div>
-        </div>
-    </div>
-    <div class="row flex-lg-row align-items-center p-3">
+<% theatre.forEach(function(theatre){ %>
+    <% theatre.movie.forEach(function(movie){ %>    
+        <% if(movie.name == movies.name){ %>    
+            <% theatre.cinema.forEach(function(cinema){ %>
+                <div class="container col-xxl-8 bg-white border shadow rounded-3">
+                    <h4 class="py-3 text-primary"><i class="fas fa-map-marker-alt"></i> <%= cinema.name %></h4>
+                    <div class="row flex-lg-row align-items-center p-3">
+                        <div class="col-lg-2">
+                            <h5>Digital Cinema</h5>
+                        </div>  
+                        <div class="col border-start">
+                            <div class="px-1 py-1">    
+                                <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
+                                <% for(i=0;i<theatre.showtime.length;i++){ %>
+                                    <a href="#" class="btn btn-dark" type="button"><%= theatre.showtime[i] %></a>
+                                <% } %>
+                            </div>
+                        </div>      
+                    </div>
+                </div>    
+            <% }); %>   
+        <% } %>
+    <% }); %>    
+<% }); %>     
+    <!-- <div class="row flex-lg-row align-items-center p-3">
         <div class="col-lg-2">
             <h5>IMAX</h5>
         </div>  
@@ -46,6 +55,5 @@
                 <a href="#" class="btn btn-dark" type="button">20.40</a>
             </div>
         </div>
-    </div>
-</div>
+    </div> -->
 <%- include('../partials/footer.ejs') %>

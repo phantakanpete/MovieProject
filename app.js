@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(flash());
 
-//zeedDB();
+zeedDB();
 
 app.use(require('express-session')({
     secret: 'secret man it is secret.',

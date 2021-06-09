@@ -2,6 +2,7 @@ const express = require('express'),
       router  = express.Router(),
       Movie   = require('../models/movie'),
       Comment = require('../models/comment'),
+      Theatre  = require('../models/theatre'),
       middleware = require('../middleware');
 
 router.get('/', function(req, res){
@@ -61,7 +62,14 @@ router.get('/showtime/:id', function(req, res){
         if(err){
             console.log(err);
         }else{
-            res.render('movie/movieshowtime.ejs', {movies: foundMovie});
+            Theatre.find({}).populate(['movie', 'cinema']).exec(function(err, foundTheatre){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render('movie/movieshowtime.ejs', {movies: foundMovie, theatre: foundTheatre});
+                }
+            });
+            // res.render('movie/movieshowtime.ejs', {movies: foundMovie});
         }
     });
 });
