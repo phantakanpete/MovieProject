@@ -91,7 +91,7 @@ router.post('/:id', middleware.isLoggedIn, function(req, res){
                     comment.save();
                     foundMovie.comments.push(comment);
                     foundMovie.save();
-                    req.flash('success', 'Create comment succeed.');
+                    req.flash('success', 'Add comment succeed.');
                     res.redirect('/movies/'+ foundMovie._id);
                 }
             });

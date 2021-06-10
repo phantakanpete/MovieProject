@@ -73,7 +73,7 @@ router.post('/login', passport.authenticate('local',
         successFlash: true,
         failureFlash: true,
         successFlash: 'Welcome to Paradis.',
-        failureFlash: 'Invaild username or password'
+        failureFlash: 'Invaild username or password.'
     }), function(res, res){
 });
 

@@ -13,7 +13,7 @@
             <a href="/movies/<%= movies._id%>" class="btn btn-dark btn-lg px-4 me-md-2">See movie details</a>
         </div>
       </div>
-      <div class="col-10 col-sm-8 col-lg-6">
+      <div class="col-10 col-sm-8 col-lg-6 image-box">
         <img src="<%= movies.image %>" class="d-block mx-lg-auto img-fluid shadow" alt="Movie Image" width="300" height="300" loading="lazy">
       </div>
     </div>
@@ -32,13 +32,22 @@
                         <div class="col border-start">
                             <div class="px-1 py-1">    
                                 <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
-                                <% for(i=0;i<theatre.showtime.length;i++){ %>
-                                    <a href="#" class="btn btn-dark" type="button"><%= theatre.showtime[i] %></a>
-                                <% } %>
+                                <% theatre.showtime.forEach(function(showtime){ %>
+                                    <% let currentDate = new Date(); %>
+                                    <% let showtimeDate = new Date("07-10-2021 "+showtime); %>
+                                    <% currentDate.setHours(currentDate.getHours() + 7); %>
+                                    <% showtimeDate.setHours(showtimeDate.getHours() + 7); %>
+                                    <% if(currentDate >= showtimeDate){ %>
+                                        <a href="#" class="btn btn-dark disabled" type="button"><%= showtime %></a>
+                                    <% } else { %>
+                                        <a href="#" class="btn btn-dark" type="button"><%= showtime %></a>
+                                    <% } %>
+                                <% }); %>
                             </div>
                         </div>      
                     </div>
-                </div>    
+                </div>
+                <br>    
             <% }); %>   
         <% } %>
     <% }); %>    

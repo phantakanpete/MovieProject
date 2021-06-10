@@ -7,6 +7,7 @@ router.get('/', function(req, res){
         if(err){
             console.log(err);
         }else{
+            promoLists.sort((a, b) => (a.utldate > b.utldate) ? -1 : 1);
             res.render('promotion/promotions.ejs', {promotions: promoLists});
         }
     });

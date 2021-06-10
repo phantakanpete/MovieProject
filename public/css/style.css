@@ -6,4 +6,43 @@ body {
 
 .card:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    transform: translateY(-0.5rem) scale(1.0125);
+    transition-duration: 1s;
+	box-shadow: 0 0.5em 3rem -1rem rgba(0,0,0,0.5);
 }
+
+.image-box {
+    overflow: hidden;
+}
+  
+.image-box img {
+    -webkit-transition: 1s linear;
+    transition: 1s linear;
+}
+  
+.image-box img:hover {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+}
+
+.text-block {
+    text-shadow: 0 0 2px #000; 
+    -moz-text-shadow: 0 0 2px #000;
+    -webkit-text-shadow: 0 0 2px #000;
+}
+
+.fade-in{
+	animation: fadeIn 2s;
+  	opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+  	opacity: 0;
+  }
+  to {
+ 	opacity: 1;
+  }
+}
+
+

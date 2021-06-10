@@ -13,7 +13,7 @@
             <a href="/movies/showtime/<%= movies._id%>" class="btn btn-dark btn-lg px-4 me-md-2">Check the available cinemas</a>
         </div>
       </div>
-      <div class="col-10 col-sm-8 col-lg-6">
+      <div class="col-10 col-sm-8 col-lg-6 image-box">
         <img src="<%= movies.image %>" class="d-block mx-lg-auto img-fluid shadow" alt="Movie Image" width="300" height="300" loading="lazy">
       </div>
     </div>
@@ -88,4 +88,5 @@
         </div>
     </div>  
 </div>
+<br>
 <%- include('../partials/footer.ejs') %>
