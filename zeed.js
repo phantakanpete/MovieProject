@@ -171,117 +171,117 @@ const theatrelist = [
         showtime: ["07:30","15:30","20:00"],
         movie: "60c062b061711c2698b043e0",
         cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 2",
+        showtime: ["07:30","14:30","19:30"],
+        movie: "60c062b061711c2698b043e1",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 3",
+        showtime: ["08:00","15:00","20:00"],
+        movie: "60c062b061711c2698b043e2",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 4",
+        showtime: ["08:00","15:00","20:00"],
+        movie: "60c062b061711c2698b043e3",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 5",
+        showtime: ["09:00","16:00"],
+        movie: "60c062b061711c2698b043e4",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 6",
+        showtime: ["09:00","16:00"],
+        movie: "60c062b061711c2698b043e5",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 7",
+        showtime: ["07:30","14:30","20:00"],
+        movie: "60c062b061711c2698b043e6",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 8",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e7",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    {
+        name: "Cinema 9",
+        showtime: ["09:30","16:00","21:00"],
+        movie: "60c062b061711c2698b043e8",
+        cinema: "60c09f0f81fbfb20d0553fda"
+    },
+    //rose cinema
+    {
+        name: "Cinema 1",
+        showtime: ["08:00","15:00","20:00"],
+        movie: "60c062b061711c2698b043e0",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    {
+        name: "Cinema 2",
+        showtime: ["08:00","15:00","20:00"],
+        movie: "60c062b061711c2698b043e6",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    {
+        name: "Cinema 3",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e7",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    {
+        name: "Cinema 4",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e8",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    {
+        name: "Cinema 5",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e3",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    {
+        name: "Cinema 6",
+        showtime: ["08:00","15:00","20:00"],
+        movie: "60c062b061711c2698b043e4",
+        cinema: "60c09f0f81fbfb20d0553fdb"
+    },
+    //maria cinema
+    {
+        name: "Cinema 1",
+        showtime: ["09:30","16:00","21:00"],
+        movie: "60c062b061711c2698b043e7",
+        cinema: "60c09f0f81fbfb20d0553fdc"
+    },
+    {
+        name: "Cinema 2",
+        showtime: ["09:30","16:00","21:00"],
+        movie: "60c062b061711c2698b043e8",
+        cinema: "60c09f0f81fbfb20d0553fdc"
+    },
+    {
+        name: "Cinema 3",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e1",
+        cinema: "60c09f0f81fbfb20d0553fdc"
+    },
+    {
+        name: "Cinema 4",
+        showtime: ["09:00","14:00","18:00"],
+        movie: "60c062b061711c2698b043e2",
+        cinema: "60c09f0f81fbfb20d0553fdc"
     }
-    // {
-    //     name: "Cinema 2",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e1",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 3",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e2",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 4",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e3",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 5",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e4",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 6",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e5",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 7",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e6",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 8",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e7",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // {
-    //     name: "Cinema 9",
-    //     showtime: ["11.00","16.00","21.00"],
-    //     movie: "60c062b061711c2698b043e8",
-    //     cinema: "60c09f0f81fbfb20d0553fda"
-    // },
-    // //rose cinema
-    // {
-    //     name: "Cinema 1",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e0",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // {
-    //     name: "Cinema 2",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e6",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // {
-    //     name: "Cinema 3",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e7",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // {
-    //     name: "Cinema 4",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e8",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // {
-    //     name: "Cinema 5",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e3",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // {
-    //     name: "Cinema 6",
-    //     showtime: ["10.30","15.30","20.30"],
-    //     movie: "60c062b061711c2698b043e4",
-    //     cinema: "60c09f0f81fbfb20d0553fdb"
-    // },
-    // //maria cinema
-    // {
-    //     name: "Cinema 1",
-    //     showtime: ["12.00","17.00","21.00"],
-    //     movie: "60c062b061711c2698b043e7",
-    //     cinema: "60c09f0f81fbfb20d0553fdc"
-    // },
-    // {
-    //     name: "Cinema 2",
-    //     showtime: ["12.00","17.00","21.00"],
-    //     movie: "60c062b061711c2698b043e8",
-    //     cinema: "60c09f0f81fbfb20d0553fdc"
-    // },
-    // {
-    //     name: "Cinema 3",
-    //     showtime: ["12.00","17.00","21.00"],
-    //     movie: "60c062b061711c2698b043e1",
-    //     cinema: "60c09f0f81fbfb20d0553fdc"
-    // },
-    // {
-    //     name: "Cinema 4",
-    //     showtime: ["12.00","17.00","21.00"],
-    //     movie: "60c062b061711c2698b043e2",
-    //     cinema: "60c09f0f81fbfb20d0553fdc"
-    // }
 ];
 
 const cinemalist = [

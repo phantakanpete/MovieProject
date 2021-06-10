@@ -69,7 +69,22 @@ router.get('/showtime/:id', function(req, res){
                     res.render('movie/movieshowtime.ejs', {movies: foundMovie, theatre: foundTheatre});
                 }
             });
-            // res.render('movie/movieshowtime.ejs', {movies: foundMovie});
+        }
+    });
+});
+
+router.get('/showtime/:id/:theatre/:showtime', function(req, res){
+    Movie.findById(req.params.id, function(err, foundMovie){
+        if(err){
+            console.log(err);
+        }else{
+            Theatre.find({}).populate(['movie', 'cinema']).exec(function(err, foundTheatre){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render('ticket/showseat.ejs', {movies: foundMovie, theatre: foundTheatre});
+                }
+            });
         }
     });
 });

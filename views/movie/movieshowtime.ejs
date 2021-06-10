@@ -41,7 +41,7 @@
                                     <% if(currentDate >= showtimeDate){ %>
                                         <a href="#" class="btn btn-dark disabled" type="button"><%= showtime %></a>
                                     <% } else { %>
-                                        <a href="#" class="btn btn-dark" type="button"><%= showtime %></a>
+                                        <a href="/movies/showtime/<%= movies._id%>/<%= theatre._id%>/<%= showtime%>" class="btn btn-dark" type="button"><%= showtime %></a>
                                     <% } %>
                                 <% }); %>
                             </div>
