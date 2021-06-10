@@ -34,9 +34,10 @@
                                 <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
                                 <% theatre.showtime.forEach(function(showtime){ %>
                                     <% let currentDate = new Date(); %>
-                                    <% let showtimeDate = new Date("07-10-2021 "+showtime); %>
+                                    <% let showtimeDate = new Date(currentDate.getMonth()+"-"+currentDate.getDate()+"-"+currentDate.getFullYear()+" "+showtime); %>
                                     <% currentDate.setHours(currentDate.getHours() + 7); %>
                                     <% showtimeDate.setHours(showtimeDate.getHours() + 7); %>
+                                    <% showtimeDate.setMonth(showtimeDate.getMonth() + 1); %>
                                     <% if(currentDate >= showtimeDate){ %>
                                         <a href="#" class="btn btn-dark disabled" type="button"><%= showtime %></a>
                                     <% } else { %>
