@@ -5,7 +5,7 @@ const express       = require('express'),
 router.get('/', function(req, res){
     Promotion.find({}, function(err, promoLists){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
         }else{
             promoLists.sort((a, b) => (a.utldate > b.utldate) ? -1 : 1);
             res.render('promotion/promotions.ejs', {promotions: promoLists});
@@ -16,7 +16,7 @@ router.get('/', function(req, res){
 router.get('/:id', function(req, res){
     Promotion.findById(req.params.id, function(err, foundPromo){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
         }else{
             res.render('promotion/promodetail.ejs', {promotions: foundPromo});
         }

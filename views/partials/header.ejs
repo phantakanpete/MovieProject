@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <a class="navbar-brand text-primary" href="/">Paradis<span class="text-dark">Cinema</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -52,10 +52,21 @@
                     </li>
                 </ul>   
                 <% } %>
-                <form class="d-flex">
+                <form class="d-flex" action="/search" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control d-flex" placeholder="Search Movie..." aria-label="Search Movie" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-dark" type="button" id="button-addon2">
+                        <input type="text" class="form-control d-flex" placeholder="Search Movie..." aria-describedby="button-addon2" list="datalistOptions" name="keyword">
+                        <datalist id="datalistOptions">
+                            <option value="The Batman">
+                            <option value="The King's Man">
+                            <option value="The Suicide Squad">
+                            <option value="Black Widow">
+                            <option value="No time to die">
+                            <option value="Mortal Kombat">
+                            <option value="Godzilla vs Kong">
+                            <option value="Zack Snyder's Justice League">
+                            <option value="Tenet">
+                        </datalist>
+                        <button class="btn btn-outline-dark" type="submit" id="button-addon2">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>  
@@ -63,6 +74,7 @@
             </div>
         </div>
     </nav>
+    
     <div class="container">
         <% if(error && error.length > 0) { %>
             <div class="alert alert-danger d-flex align-items-center" role="alert">

@@ -1,31 +1,30 @@
 <%- include('../partials/header.ejs') %>
+
 <div class="container p-5">
     <h1 class="display-2 text-center p-5">NOW <span class="text-primary">SHOWING</span></h1>
     <div class="btn-group py-3">
-      <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Sort by...
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/movies/sortByname">Name</a></li>
-        <li><a class="dropdown-item" href="/movies/sortByrate">Rate (13 to 18)</a></li>
-        <li><a class="dropdown-item" href="/movies/sortBygenre">Genre</a></li>
-      </ul>
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by...</button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/movies/sortByname">Name</a></li>
+            <li><a class="dropdown-item" href="/movies/sortByrate">Rate (13 to 18)</a></li>
+            <li><a class="dropdown-item" href="/movies/sortBygenre">Genre</a></li>
+        </ul>
     </div>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3" id="one">
-      <% movies.sort((a, b) => (a.reldate > b.reldate) ? -1 : 1)%>
-      <% movies.forEach(function(movie){ %>  
-        <div class="col">
-          <div class="card h-100">
-            <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-              <img src="<%= movie.image %>" class="card-img-top">
-              <div class="card-body text-dark text-center">
-                <h5 class="card-title"><%= movie.name %></h5>
-                <p class="card-text"><%= movie.reldate %></p>
-              </div>
-            </a>
-          </div>
-        </div>
-      <% }); %> 
+        <% movies.forEach(function(movie){ %>  
+            <div class="col">
+                <div class="card h-100">
+                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                        <img src="<%= movie.image %>" class="card-img-top">
+                        <div class="card-body text-dark text-center">
+                            <h5 class="card-title"><%= movie.name %></h5>
+                            <p class="card-text"><%= movie.reldate %></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        <% }); %> 
     </div>
 </div>
+
 <%- include('../partials/footer.ejs') %>

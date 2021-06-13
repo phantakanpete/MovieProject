@@ -29,15 +29,26 @@ const express       = require('express'),
 router.get('/', function(req, res){
     Movie.find({}, function(err, movieLists){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
         }else{
             Promotion.find({}, function(err, promoLists){
                 if(err){
-                    console.log(err);
+                    req.flash('error', err.message);
                 }else{
                     res.render('home.ejs', {movies: movieLists, promotions: promoLists});
                 }
             });
+        }
+    });
+});
+
+//search
+router.get('/search', function(req, res){
+    Movie.findOne({name: req.query.keyword}).populate('comments').exec(function(err, foundMovie){
+        if(err){
+            req.flash('error', err.message);
+        }else{
+            res.render('movie/moviedetail.ejs', {movies: foundMovie});
         }
     });
 });
@@ -55,8 +66,8 @@ router.post('/signup', function(req, res){
             res.redirect('/signup');
         }else{
             passport.authenticate('local')(req, res, function(){
-                req.flash('success', 'Create account completed, now login.');
-                res.redirect('/login');
+                req.flash('success', 'Welcome to Paradis.');
+                res.redirect('/');
             });
         }
     });
@@ -87,7 +98,7 @@ router.get('/logout', function(req, res){
 router.get('/user/:id', function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
-            req.flash('error', 'Something went wrong.');
+            req.flash('error', err.message);
             res.redirect('/');
         }else{
             Comment.find().where('author.id').equals(foundUser._id).exec(function(err, foundComment){
@@ -95,7 +106,13 @@ router.get('/user/:id', function(req, res){
                     req.flash('error', 'Something went wrong.');
                     res.redirect('/');
                 }else{
-                   res.render('user/profile.ejs', {user: foundUser, comments: foundComment});
+                    Movie.find({}).populate('comments').exec(function(err, foundMovie){
+                        if(err){
+                            req.flash('error', 'Something went wrong.');
+                        }else{
+                            res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movies: foundMovie});
+                        }
+                    });
                 }
             });
         }
@@ -105,7 +122,7 @@ router.get('/user/:id', function(req, res){
 router.get('/user/edit/:id', function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
-            console.log(err);
+            req.flash('error', err.message);
             res.redirect('/');
         }else{
             res.render('user/edit.ejs', {user: foundUser});
@@ -113,6 +130,7 @@ router.get('/user/edit/:id', function(req, res){
     });
 });
 
+//updateuserinfo
 router.put('/user/:id', upload.single('profileimg'), function(req, res){
     if(req.file){
         req.body.user.profileimg = '/uploads/'+ req.file.filename;

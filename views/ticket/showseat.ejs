@@ -1,4 +1,5 @@
 <%- include('../partials/header.ejs') %>
+
 <script src="/js/seat.js" defer></script>
 
 <br>
@@ -26,124 +27,124 @@
         <img src="https://pngimage.net/wp-content/uploads/2018/05/cinema-screen-png.png" class="rounded img-fluid" width="300px">
         <p class="text-muted">Screen</p>
     </div>
-    <div class="container p-2">    
-        <div class="row text-center"> 
-            <div class="col-12">
-                <span class="text-muted">A</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("A")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">A</span>
-            </div>
-            <div class="col-12">
-                <span class="text-muted">B</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("B")){ %>
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>    
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">B</span>
-            </div> 
-            <div class="col-12">
-                <span class="text-muted">C</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("C")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">C</span>
-            </div> 
-            <div class="col-12">
-                <span class="text-muted">D</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("D")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">D</span>
-            </div>   
-            <div class="col-12">
-                <span class="text-muted">E</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("E")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">E</span>
-            </div>   
-            <div class="col-12">
-                <span class="text-muted">F</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("F")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">F</span>
-            </div>   
-            <div class="col-12">
-                <span class="text-muted">G</span>
-                <% showtime.seats.forEach(function(seats){ %>
-                    <% if(seats.name.includes("G")){ %>  
-                        <% if(seats.status.includes("Disabled")){ %>
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="<%= seats.img %>"></button>   
-                        <% } else { %>  
-                            <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
-                        <% } %>   
-                    <% } %>
-                <% }); %>
-                <span class="text-muted">G</span>
-            </div>                       
+   
+    <div class="row text-center"> 
+        <div class="col-12">
+            <span class="text-muted">A</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("A")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">A</span>
         </div>
+        <div class="col-12">
+            <span class="text-muted">B</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("B")){ %>
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>    
+                <% } %>
+            <% }); %>
+            <span class="text-muted">B</span>
+        </div> 
+        <div class="col-12">
+            <span class="text-muted">C</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("C")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">C</span>
+        </div> 
+        <div class="col-12">
+            <span class="text-muted">D</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("D")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">D</span>
+        </div>   
+        <div class="col-12">
+            <span class="text-muted">E</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("E")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">E</span>
+        </div>   
+        <div class="col-12">
+            <span class="text-muted">F</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("F")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">F</span>
+        </div>   
+        <div class="col-12">
+            <span class="text-muted">G</span>
+            <% showtime.seats.forEach(function(seats){ %>
+                <% if(seats.name.includes("G")){ %>  
+                    <% if(seats.status.includes("Disabled")){ %>
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>" disabled><img src="/images/seatowned.jpg"></button>   
+                    <% } else { %>  
+                        <button class="btn btn-sm sbtnn" id="<%= seats.name %>"><img src="<%= seats.img %>"></button>
+                    <% } %>   
+                <% } %>
+            <% }); %>
+            <span class="text-muted">G</span>
+        </div>                       
+    </div>
 
-        <hr class="my-4">
+    <hr class="my-4">
 
-        <div class="row align-items-center g-lg-5 p-5">
-            <div class="col-lg-7 text-center">
-                <p class="text-primary">Seat types</p>
+    <div class="row align-items-center g-lg-5 p-5">
+        <div class="col-lg-7 text-center">
+            <p class="text-primary">Seat types</p>
+        </div>
+        <div class="col-md-10 col-lg-5 mx-auto">
+            <div class="d-flex">
+                <p class="text-primary px-2">Seats Number: </p>
+                <p id="sum"></p> 
+            </div>  
+            <div class="d-flex">
+                <p class="text-primary px-2">Total Price: </p>
+                <p id="price">0</p>
+                <p class="text-primary px-2">$</p>
             </div>
-            <div class="col-md-10 col-lg-5 mx-auto">
-                <div class="d-flex">
-                    <p class="text-primary px-2">Seats Number: </p>
-                    <p id="sum"></p> 
-                </div>  
-                <div class="d-flex">
-                    <p class="text-primary px-2">Total Price: </p>
-                    <p id="price">0</p>
-                    <p class="text-primary px-2">$</p>
-                </div>
-                <form action='/movies/ticketing/<%= showtime._id %>' method='GET'>
-                    <input type="hidden" id="input" name="seatselect" value="">
-                    <button type="submit" class="btn btn-dark">Confirm Ticketing</button>
-                </form>
-            </div>
+            <form action='/movies/ticketing/<%= showtime._id %>' method='GET'>
+                <input type="hidden" id="input" name="seatselect" value="">
+                <button type="submit" class="btn btn-dark">Confirm Ticketing</button>
+            </form>
         </div>
     </div>
 </div>
 <br>
+
 <%- include('../partials/footer.ejs') %>

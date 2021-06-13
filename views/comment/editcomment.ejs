@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+
+<br>
+<div class="container col-xxl-8 bg-white border shadow rounded-3 p-5">
+    <form action="/movies/<%= comment._id %>?_method=PUT" method="POST">
+        <label class="form-label">Edit comment</label>
+        <input type="text" class="form-control" name='comment[text]' placeholder='<%= comment.text %>' value = '<%= comment.text %>'>
+        <div class="float-end my-2 ps-2">
+            <button type="submit" class="btn btn-dark">Edit comment</button>
+            <a href="/movies/<%= movie_id %>" class="btn btn-outline-dark">Back</a>
+        </div>
+    </form>
+    <form action="/movies/<%= comment._id %>?_method=DELETE" method="POST">
+        <div class="float-end my-2 px-2 border-end">
+            <button type='submit' class="btn btn-danger">Delete comment</button>
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/footer.ejs') %>

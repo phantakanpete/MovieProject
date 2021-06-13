@@ -1,4 +1,5 @@
 <%- include('../partials/header.ejs') %>
+
 <script src="/js/viewinfo.js" defer></script>
 
 <br>
@@ -19,38 +20,49 @@
     </div>
     <ul class="nav nav-tabs px-3">
         <li class="nav-item">
-          <a class="nav-link text-dark active" id="movhistory" href="#">Movie history</a>
+            <a class="nav-link text-dark active" id="movhistory" href="#">Movie history</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" id="likemovie" href="#">Liked movie</a>
+            <a class="nav-link text-dark" id="likemovie" href="#">Liked movie</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" id="mycomment" href="#">My comment</a>
         </li>
     </ul>
-    <div class="p-5" id="one">
+    <div class="p-3" id="one">
         <p>No movie history yet</p>
     </div>
-    <div class="d-none p-5" id="two">
+    <div class="d-none p-3" id="two">
         <p>No liked movie yet</p>
     </div>
-    <div class="d-none p-5" id="three">
+    <div class="d-none p-3" id="three">
         <% comments.forEach(function(comment){ %>
-            <div class="d-flex">
-                <div class="flex-shrink-0">
-                    <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
-                </div>
-                <div class="flex-grow-1 ms-3">
-                    <div class="float-end">
-                        <!-- <i class="far fa-thumbs-up px-2"></i>
-                        <i class="far fa-thumbs-down px-2"></i> -->
-                        <!-- <i class="fas fa-ellipsis-h"></i> -->
-                    </div>
-                    <strong><%= comment.author.username + ' : ' %></strong>
-                    <p><%= comment.text %></p>
-                </div>
-            </div>        
+            <% movies.forEach(function(movie){ %>
+                <% movie.comments.forEach(function(comments){ %>
+                    <% if(comments._id.equals(comment._id)){ %>
+                        <div class="d-flex shadow-sm rounded my-2">
+                            <div class="flex-shrink-0">
+                                <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <div class="dropdown float-end">
+                                    <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="/movies/<%= movie._id %>">See source</a></li>
+                                        <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit-delete</a></li>
+                                    </ul>
+                                </div>
+                                <strong><%= comment.author.username + ' : ' %></strong>
+                                <p><%= comment.text %></p>
+                            </div>
+                        </div> 
+                    <% } %>  
+                <% }); %>       
+            <% }); %>           
         <% }); %>
     </div>
 </div>
+
 <%- include('../partials/footer.ejs') %>

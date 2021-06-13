@@ -10,4 +10,4 @@ function preview(){
         let img = document.querySelector('#preview');
         img.setAttribute('src', result)
     }
-}
+};

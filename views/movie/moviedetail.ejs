@@ -1,4 +1,5 @@
 <%- include('../partials/header.ejs') %>
+
 <br>
 <div class="container col-xxl-8 bg-white border shadow rounded-3">
     <div class="row flex-lg-row-reverse align-items-center g-5 p-3">
@@ -19,6 +20,7 @@
     </div>
 </div>
 <br>
+
 <div class="container col-xxl-8 bg-white border shadow rounded-3">
     <div class="row flex-lg-row align-items-center p-3">
         <div class="col-lg-6">
@@ -32,6 +34,7 @@
     </div>
 </div>
 <br>
+
 <div class="container col-xxl-8 bg-white border shadow rounded-3">
     <div class="row flex-lg-row align-items-center p-3">
         <div class="col-lg-6">
@@ -45,6 +48,7 @@
     </div>
 </div>
 <br>
+
 <div class="container col-xxl-8 bg-white border shadow rounded-3">
     <div class="p-3">
         <h3 class="display-3">COMMENTS :</h3>
@@ -55,11 +59,25 @@
               <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
             </div>
             <div class="flex-grow-1 ms-3">
-                <div class="float-end">
-                    <!-- <i class="far fa-thumbs-up px-2"></i>
-                    <i class="far fa-thumbs-down px-2"></i> -->
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                    <div class="dropdown float-end">
+                        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit-delete</a></li>
+                        </ul>
+                    </div>
+                <% } else { %>
+                    <div class="dropdown float-end">
+                        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit-delete</a></li>
+                        </ul>
+                    </div>
+                <% } %>        
                 <strong><%= comment.author.username + ' : ' %></strong>
                 <p><%= comment.text %></p>
             </div>
@@ -78,7 +96,7 @@
                   <div class="modal-body">
                     <form action='/movies/<%= movies._id %>' method='POST'>
                         <input type="text" class="form-control" name='comment[text]' placeholder='Comment' required>
-                        <div class="modal-footer">
+                        <div class="modal-footer float-end">
                             <button type="submit" class="btn btn-dark">Add</button>
                         </div>
                     </form>
@@ -89,4 +107,5 @@
     </div>  
 </div>
 <br>
+
 <%- include('../partials/footer.ejs') %>

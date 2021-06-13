@@ -4,7 +4,7 @@ const middlewareObj = {};
 
 middlewareObj.checkCommentOwner = function(req, res, next){
     if(req.isAuthenticated()){
-        Comment.findById(req.params.id, function(err, foundComment){
+        Comment.findById(req.params.comment_id, function(err, foundComment){
             if(err){
                 req.flash('error', 'No comment found.');
                 res.redirect('back');
