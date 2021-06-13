@@ -8,6 +8,7 @@ const express = require('express'),
       Showtime  = require('../models/showtime'),
       User       = require('../models/user'),
       Bill       = require('../models/bill'),
+      Favourite       = require('../models/favourite'),
       middleware = require('../middleware');
 
 router.get('/', function(req, res){
@@ -55,12 +56,19 @@ router.get('/sortBygenre', function(req, res){
 });
 
 //moviedetails
-router.get('/:id', function(req, res){
+router.get('/:id', middleware.isLoggedIn, function(req, res){
     Movie.findById(req.params.id).populate('comments').exec(function(err, foundMovie){
         if(err){
             req.flash('error', err.message);
         }else{
-            res.render('movie/moviedetail.ejs', {movies: foundMovie});
+            Favourite.findOne({movie: req.params.id, user: req.user._id}, function(err, favourite){
+                if(err){
+                    req.flash('error', err.message);
+                    res.redirect('/movies');
+                }else{
+                    res.render('movie/moviedetail.ejs', {movies: foundMovie, favourite: favourite});
+                }
+            });
         }
     });
 });
@@ -164,6 +172,7 @@ router.post('/ticketing/:id', function(req, res){
                 bill.seatselect.push(seatselect);
             }); 
             bill.totalprice = req.body.sumprice;
+            bill.showtime = req.params.id;
             bill.save();
             req.flash('success', 'Your payment is succeed, enjoy.');
             res.redirect('/');
@@ -208,6 +217,7 @@ router.get('/:comment_id/edit', middleware.checkCommentOwner, function(req, res)
     });
 });
 
+//edit comment
 router.put('/:comment_id', middleware.checkCommentOwner, function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
         if(err){
@@ -220,6 +230,7 @@ router.put('/:comment_id', middleware.checkCommentOwner, function(req, res){
     });
 });
 
+//delete comment
 router.delete('/:comment_id', middleware.checkCommentOwner, function(req, res){
     Comment.findByIdAndRemove(req.params.comment_id, function(err){
         if(err){
@@ -227,6 +238,41 @@ router.delete('/:comment_id', middleware.checkCommentOwner, function(req, res){
             res.redirect('back');
         } else {
             req.flash('success', 'You have deleted your comment.');
+            res.redirect('/movies');
+        }
+    });
+});
+
+
+//add to favourite
+router.post('/:id/favourite', middleware.isLoggedIn, function(req, res){
+    Movie.findById(req.params.id, function(err, foundMovie){
+        if(err){
+            req.flash('error', err.message);
+            res.redirect('/movies');
+        } else {
+            Favourite.create(req.body.movies, function(err, favourite){
+                if(err) {
+                    req.flash('error', err.message);
+                } else {
+                    favourite.movie = foundMovie._id;
+                    favourite.user = req.user._id;
+                    favourite.save();
+                    req.flash('success', 'Add to favourite succeed.');
+                    res.redirect('/movies/'+ foundMovie._id);
+                }
+            });
+        }
+    });
+});
+//delete from favourite
+router.delete('/:id/favourite', middleware.isLoggedIn, function(req, res){
+    Favourite.findOneAndRemove({movie: req.params.id, user: req.user._id}, function(err){
+        if(err){
+            req.flash('error', err.message);
+            res.redirect('/movies');
+        }else{
+            req.flash('success', 'Remove from favourite succeed.');
             res.redirect('/movies');
         }
     });

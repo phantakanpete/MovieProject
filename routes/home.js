@@ -1,10 +1,10 @@
-const comment = require('../models/comment');
-
 const express       = require('express'),
       router        = express.Router(),
       Movie         = require('../models/movie'),
       Promotion     = require('../models/promotion'),
       Comment       = require('../models/comment'),
+      Favourite       = require('../models/favourite'),
+      Bill       = require('../models/bill'),
       User          = require('../models/user'),
       multer        = require('multer'),
       path          = require('path'),
@@ -46,7 +46,7 @@ router.get('/', function(req, res){
 router.get('/search', function(req, res){
     Movie.findOne({name: req.query.keyword}).populate('comments').exec(function(err, foundMovie){
         if(err){
-            req.flash('error', err.message);
+            req.flash('error', 'Your result not found.');
         }else{
             res.render('movie/moviedetail.ejs', {movies: foundMovie});
         }
@@ -98,7 +98,7 @@ router.get('/logout', function(req, res){
 router.get('/user/:id', function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
-            req.flash('error', err.message);
+            req.flash('error', 'Something went wrong.')
             res.redirect('/');
         }else{
             Comment.find().where('author.id').equals(foundUser._id).exec(function(err, foundComment){
@@ -110,7 +110,21 @@ router.get('/user/:id', function(req, res){
                         if(err){
                             req.flash('error', 'Something went wrong.');
                         }else{
-                            res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movies: foundMovie});
+                            Favourite.find({movie: foundMovie._id, user: foundUser._id}, function(err, foundFavourite){
+                                if(err){
+                                    req.flash('error', 'Something went wrong.')
+                                    res.redirect('/');
+                                }else{
+                                    Bill.find().where('user.id').equals(foundUser._id).exec(function(err, foundBill){
+                                        if(err){
+                                            req.flash('error', 'Something went wrong.')
+                                            res.redirect('/');
+                                        }else{
+                                            res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movies: foundMovie, favourite: foundFavourite, bill: foundBill});
+                                        }
+                                    });
+                                }
+                            });
                         }
                     });
                 }

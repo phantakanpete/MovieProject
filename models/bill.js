@@ -19,7 +19,13 @@ const billSchema = new mongoose.Schema({
         exp: String,
         cvv: String
     },
-    totalprice: String
+    totalprice: String,
+    showtime: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Showtime'
+        }
+    ]
 });
 
 module.exports = mongoose.model('Bill', billSchema);

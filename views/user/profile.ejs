@@ -30,17 +30,52 @@
         </li>
     </ul>
     <div class="p-3" id="one">
-        <p>No movie history yet</p>
+        <% let billnum = 0; %>
+        <% bill.forEach(function(bill){ %>
+            <% billnum += 1; %>
+            <div class="d-flex shadow-sm rounded p-2">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <div class="dropdown float-end">
+                        <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">See info</a></li>
+                        </ul>
+                    </div>
+                    <strong>Bill number : <span><%= billnum %></span></strong>
+                    <p>ID : <span><%= bill._id %></span></p>
+                </div>
+            </div> 
+        <% }); %>    
     </div>
     <div class="d-none p-3" id="two">
-        <p>No liked movie yet</p>
+        <% console.log(favourite) %>
+        <% favourite.forEach(function(favourite){ %>
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="/movies/<%= favourite.movie._id%>" class="text-decoration-none">
+                            <img src="<%= favourite.movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= favourite.movie.name %></h5>
+                                <p class="card-text"><%= favourite.movie.reldate %></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
     </div>
     <div class="d-none p-3" id="three">
         <% comments.forEach(function(comment){ %>
             <% movies.forEach(function(movie){ %>
                 <% movie.comments.forEach(function(comments){ %>
                     <% if(comments._id.equals(comment._id)){ %>
-                        <div class="d-flex shadow-sm rounded my-2">
+                        <div class="d-flex shadow-sm rounded p-2">
                             <div class="flex-shrink-0">
                                 <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
                             </div>
@@ -50,8 +85,8 @@
                                         <i class="fas fa-ellipsis-h"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="/movies/<%= movie._id %>">See source</a></li>
-                                        <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit-delete</a></li>
+                                        <li><a class="dropdown-item" href="/movies/<%= movie._id %>">See from movie page</a></li>
+                                        <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit - Delete</a></li>
                                     </ul>
                                 </div>
                                 <strong><%= comment.author.username + ' : ' %></strong>

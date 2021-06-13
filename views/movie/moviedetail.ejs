@@ -11,7 +11,17 @@
             <p><span class="text-primary">Duration: </span><%= movies.duration %></p>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <a href="/movies/showtime/<%= movies._id%>" class="btn btn-dark btn-lg px-4 me-md-2">Check the available cinemas</a>
+            <a href="/movies/showtime/<%= movies._id%>" class="btn btn-dark px-4 me-md-2">Check the available cinemas</a>
+            <% if(favourite != null){ %>
+                <form action="/movies/<%= movies._id %>/favourite?_method=DELETE" method="POST" id="deleteform">
+                    <input type="hidden" class="form-control" name='movies[movie]' value="<%= movies._id %>">
+                    <button type="submit" class="btn btn-danger" id="deletebutton"><i class="far fa-heart"></i> Remove from favourite</button>
+                </form>
+            <% } else {%>    
+                <form action='/movies/<%= movies._id %>/favourite' method='POST' id="postform">
+                    <button type="submit" class="btn btn-danger" id="postbutton"><i class="far fa-heart"></i> Add to favourite</button>
+                </form>
+            <% } %>
         </div>
       </div>
       <div class="col-10 col-sm-8 col-lg-6 image-box">
