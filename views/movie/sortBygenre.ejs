@@ -2,7 +2,7 @@
 <script src="/js/sortBygenre.js" defer></script>
 
 <div class="container p-5">
-    <h1 class="display-2 text-center p-5">NOW SHOWING</h1>
+    <h1 class="display-2 text-center p-5">NOW <span class="text-primary">SHOWING</span></h1>
     <div class="d-flex">  
         <div class="btn-group py-3">
             <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,92 +27,97 @@
             </ul>
         </div>
     </div>      
-    <h1 class="display-4 p-2" id="action">Action</h1>
+ 
+    <h1 class="display-4 py-2" id="action"><i class="fas fa-angle-double-down"></i> ACTION</h1>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 py-2">
         <% movies.forEach(function(movie){ %>
             <% if(movie.genre.includes("Action")){ %>    
                 <div class="col">
-                <div class="card h-100">
-                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-                    <img src="<%= movie.image %>" class="card-img-top">
-                    <div class="card-body text-dark text-center">
-                        <h5 class="card-title"><%= movie.name %></h5>
-                        <p class="card-text"><%= movie.reldate %></p>
+                    <div class="card h-100">
+                        <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                            <img src="<%= movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= movie.name %></h5>
+                                <p class="card-text"><%= movie.reldate %></p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
                 </div>
             <% } %>
         <% }); %> 
     </div>
-    <h1 class="display-4 p-2" id="thriller">Thriller</h1>
+    
+    <h1 class="display-4 p-2" id="thriller"><i class="fas fa-angle-double-down"></i> THRILLER</h1>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 py-2">
         <% movies.forEach(function(movie){ %>
             <% if(movie.genre.includes("Thriller")){ %>    
                 <div class="col">
-                <div class="card h-100">
-                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-                    <img src="<%= movie.image %>" class="card-img-top">
-                    <div class="card-body text-dark text-center">
-                        <h5 class="card-title"><%= movie.name %></h5>
-                        <p class="card-text"><%= movie.reldate %></p>
+                    <div class="card h-100">
+                        <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                            <img src="<%= movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= movie.name %></h5>
+                                <p class="card-text"><%= movie.reldate %></p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
                 </div>
             <% } %>
         <% }); %> 
     </div>
-    <h1 class="display-4 p-2" id="scifi">Sci-Fi</h1>
+    
+    <h1 class="display-4 p-2" id="scifi"><i class="fas fa-angle-double-down"></i> SCI-FI</h1>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 py-2">
         <% movies.forEach(function(movie){ %>
             <% if(movie.genre.includes("Sci-Fi")){ %>    
                 <div class="col">
-                <div class="card h-100">
-                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-                    <img src="<%= movie.image %>" class="card-img-top">
-                    <div class="card-body text-dark text-center">
-                        <h5 class="card-title"><%= movie.name %></h5>
-                        <p class="card-text"><%= movie.reldate %></p>
+                    <div class="card h-100">
+                        <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                            <img src="<%= movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= movie.name %></h5>
+                                <p class="card-text"><%= movie.reldate %></p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
                 </div>
             <% } %>
         <% }); %> 
     </div>
-    <h1 class="display-4 p-2" id="adventure">Adventure</h1>
+    
+    <h1 class="display-4 p-2" id="adventure"><i class="fas fa-angle-double-down"></i> ADVENTURE</h1>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 py-2">
         <% movies.forEach(function(movie){ %>
             <% if(movie.genre.includes("Adventure")){ %>    
                 <div class="col">
-                <div class="card h-100">
-                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-                    <img src="<%= movie.image %>" class="card-img-top">
-                    <div class="card-body text-dark text-center">
-                        <h5 class="card-title"><%= movie.name %></h5>
-                        <p class="card-text"><%= movie.reldate %></p>
+                    <div class="card h-100">
+                        <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                            <img src="<%= movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= movie.name %></h5>
+                                <p class="card-text"><%= movie.reldate %></p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
                 </div>
             <% } %>
         <% }); %> 
     </div>
-    <h1 class="display-4 p-2" id="comedy">Comedy</h1>
+    
+    <h1 class="display-4 p-2" id="comedy"><i class="fas fa-angle-double-down"></i> COMEDY</h1>
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3 py-2">
         <% movies.forEach(function(movie){ %>
             <% if(movie.genre.includes("Comedy")){ %>    
                 <div class="col">
-                <div class="card h-100">
-                    <a href='/movies/<%= movie._id%>' class="text-decoration-none">
-                    <img src="<%= movie.image %>" class="card-img-top">
-                    <div class="card-body text-dark text-center">
-                        <h5 class="card-title"><%= movie.name %></h5>
-                        <p class="card-text"><%= movie.reldate %></p>
+                    <div class="card h-100">
+                        <a href='/movies/<%= movie._id%>' class="text-decoration-none">
+                            <img src="<%= movie.image %>" class="card-img-top">
+                            <div class="card-body text-dark text-center">
+                                <h5 class="card-title"><%= movie.name %></h5>
+                                <p class="card-text"><%= movie.reldate %></p>
+                            </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
                 </div>
             <% } %>
         <% }); %> 

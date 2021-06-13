@@ -20,9 +20,9 @@
 </div>
 <br>
 <% theatre.forEach(function(theatre){ %>
-    <% theatre.movie.forEach(function(movie){ %>    
-        <% if(movie.name == movies.name){ %>    
-            <% theatre.cinema.forEach(function(cinema){ %>
+    <% theatre.movie.forEach(function(movie){ %>
+        <% if(movie.name == movies.name){ %> 
+            <% theatre.cinema.forEach(function(cinema){ %>     
                 <div class="container col-xxl-8 bg-white border shadow rounded-3">
                     <h4 class="py-3 text-primary"><i class="fas fa-map-marker-alt"></i> <%= cinema.name %></h4>
                     <div class="row flex-lg-row align-items-center p-3">
@@ -32,17 +32,21 @@
                         <div class="col border-start">
                             <div class="px-1 py-1">    
                                 <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
-                                <% theatre.showtime.forEach(function(showtime){ %>
-                                    <% let currentDate = new Date(); %>
-                                    <% let showtimeDate = new Date(currentDate.getMonth()+"-"+currentDate.getDate()+"-"+currentDate.getFullYear()+" "+showtime); %>
-                                    <% currentDate.setHours(currentDate.getHours() + 7); %>
-                                    <% showtimeDate.setHours(showtimeDate.getHours() + 7); %>
-                                    <% showtimeDate.setMonth(showtimeDate.getMonth() + 1); %>
-                                    <% if(currentDate >= showtimeDate){ %>
-                                        <a href="#" class="btn btn-dark disabled" type="button"><%= showtime %></a>
-                                    <% } else { %>
-                                        <a href="/movies/showtime/<%= movies._id%>/<%= theatre._id%>/<%= showtime%>" class="btn btn-dark" type="button"><%= showtime %></a>
-                                    <% } %>
+                                <% showtime.forEach(function(showtime){ %>
+                                    <% showtime.theatre.forEach(function(showtimetheatre){ %>    
+                                        <% if(showtimetheatre._id.equals(theatre._id)){ %>
+                                            <% let currentDate = new Date(); %>
+                                            <% let showtimeDate = new Date(currentDate.getMonth()+"-"+currentDate.getDate()+"-"+currentDate.getFullYear()+" "+showtime.time); %>
+                                            <% currentDate.setHours(currentDate.getHours() + 7); %>
+                                            <% showtimeDate.setHours(showtimeDate.getHours() + 7); %>
+                                            <% showtimeDate.setMonth(showtimeDate.getMonth() + 1); %>
+                                            <% if(currentDate >= showtimeDate){ %>
+                                                <a href="#" class="btn btn-dark disabled" type="button"><%= showtime.time %></a>
+                                            <% } else { %>
+                                                <a href="/movies/showtime/<%= movies._id%>/<%= theatre._id%>/<%= showtime._id%>" class="btn btn-dark" type="button"><%= showtime.time %></a>
+                                            <% } %>
+                                        <% } %>    
+                                    <% }); %>    
                                 <% }); %>
                             </div>
                         </div>      
@@ -50,20 +54,7 @@
                 </div>
                 <br>    
             <% }); %>   
-        <% } %>
-    <% }); %>    
+        <% } %> 
+    <% }); %>       
 <% }); %>     
-    <!-- <div class="row flex-lg-row align-items-center p-3">
-        <div class="col-lg-2">
-            <h5>IMAX</h5>
-        </div>  
-        <div class="col border-start">
-            <div class="px-1 py-1">    
-                <p class="fs-6"><i class="fas fa-volume-up"></i> ENG</p>
-                <a href="#" class="btn btn-dark" type="button">17.40</a>
-                <a href="#" class="btn btn-dark" type="button">19.40</a>
-                <a href="#" class="btn btn-dark" type="button">20.40</a>
-            </div>
-        </div>
-    </div> -->
 <%- include('../partials/footer.ejs') %>

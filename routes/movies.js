@@ -1,8 +1,13 @@
+const user = require('../models/user');
+
 const express = require('express'),
       router  = express.Router(),
       Movie   = require('../models/movie'),
       Comment = require('../models/comment'),
       Theatre  = require('../models/theatre'),
+      Showtime  = require('../models/showtime'),
+      User       = require('../models/user'),
+      Bill       = require('../models/bill'),
       middleware = require('../middleware');
 
 router.get('/', function(req, res){
@@ -66,7 +71,14 @@ router.get('/showtime/:id', function(req, res){
                 if(err){
                     console.log(err);
                 }else{
-                    res.render('movie/movieshowtime.ejs', {movies: foundMovie, theatre: foundTheatre});
+                    Showtime.find({}).populate('theatre').exec(function(err, foundShowtime){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            foundShowtime.sort((a, b) => (a.time > b.time) ? 1 : -1); 
+                            res.render('movie/movieshowtime.ejs', {movies: foundMovie, theatre: foundTheatre, showtime: foundShowtime});
+                        }
+                    });
                 }
             });
         }
@@ -78,16 +90,82 @@ router.get('/showtime/:id/:theatre/:showtime', function(req, res){
         if(err){
             console.log(err);
         }else{
-            Theatre.find({}).populate(['movie', 'cinema']).exec(function(err, foundTheatre){
+            Theatre.findById(req.params.theatre).populate(['movie', 'cinema']).exec(function(err, foundTheatre){
                 if(err){
                     console.log(err);
                 }else{
-                    res.render('ticket/showseat.ejs', {movies: foundMovie, theatre: foundTheatre});
+                    Showtime.findById(req.params.showtime).populate('theatre').exec(function(err, foundShowtime){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.render('ticket/showseat.ejs', {movies: foundMovie, theatre: foundTheatre, showtime: foundShowtime});
+                        }
+                    });
                 }
             });
         }
     });
 });
+
+//payment
+router.get('/ticketing/:id', middleware.isLoggedIn, function(req, res){
+    Showtime.findById(req.params.id, function(err, foundShowtime){
+        if(err){
+            console.log(err);
+            res.redirect('/movies');
+        } else {
+            let seatselect = req.query.seatselect;
+            res.render('ticket/payment.ejs', {showtime: foundShowtime, seatselect: seatselect});
+        }
+    });
+});
+
+//post bill after payment
+router.post('/ticketing/:id', function(req, res){
+    let seatselected = req.body.seatselect;
+    let seatArr = seatselected.split(',');
+    seatArr.forEach(function(seatselect){
+        Showtime.updateOne({ _id: req.params.id, "seats.name": seatselect},{ $set: {"seats.$.status": "Disabled"}}, function(err, updateSeat){
+            if(err){
+                console.log(err);
+            } else {
+                console.log(updateSeat);
+            }
+        });
+    });
+    
+    Bill.create(req.body.user, function(err, bill){
+        if(err) {
+            console.log(err);
+        } else {
+            bill.user.id = req.user._id;
+            bill.user.username = req.user.username;
+            bill.user.firstname = req.user.firstname;
+            bill.user.lastname = req.user.lastname;
+            bill.user.email = req.user.email;
+            bill.payment.creditno = req.body.creditno;
+            bill.payment.exp = req.body.exp;
+            bill.payment.cvv = req.body.cvv;
+            bill.payment.nameoncard = req.body.nameoncard;
+            let credittype = req.body.paymentMethod;
+            for(i = 0; i < credittype.length; i++) {
+                if(credittype[i].checked){
+                    bill.payment.ptype = credittype[i].value;
+                }
+            }
+            let seatselected = req.body.seatselect;
+            let seatArr = seatselected.split(',');
+            seatArr.forEach(function(seatselect){
+                bill.seatselect.push(seatselect);
+            }); 
+            bill.totalprice = req.body.sumprice;
+            bill.save();
+            req.flash('success', 'Your payment is succeed, enjoy.');
+            res.redirect('/');
+        }
+    });
+});       
+   
 
 //add comment in movie
 router.post('/:id', middleware.isLoggedIn, function(req, res){

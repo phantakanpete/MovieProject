@@ -3,6 +3,7 @@ const Movie = require('./models/movie');
 const Promotion = require('./models/promotion');
 const Theatre  = require('./models/theatre');
 const Cinema  = require('./models/cinema');
+const Showtime  = require('./models/showtime');
 
 const list = [
     {
@@ -168,118 +169,79 @@ const theatrelist = [
     //sina cinema
     {
         name: "Cinema 1",
-        showtime: ["07:30","15:30","20:00"],
         movie: "60c062b061711c2698b043e0",
         cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 2",
-        showtime: ["07:30","14:30","19:30"],
         movie: "60c062b061711c2698b043e1",
         cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 3",
-        showtime: ["08:00","15:00","20:00"],
         movie: "60c062b061711c2698b043e2",
         cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 4",
-        showtime: ["08:00","15:00","20:00"],
         movie: "60c062b061711c2698b043e3",
         cinema: "60c09f0f81fbfb20d0553fda"
     },
     {
         name: "Cinema 5",
-        showtime: ["09:00","16:00"],
         movie: "60c062b061711c2698b043e4",
-        cinema: "60c09f0f81fbfb20d0553fda"
-    },
-    {
-        name: "Cinema 6",
-        showtime: ["09:00","16:00"],
-        movie: "60c062b061711c2698b043e5",
-        cinema: "60c09f0f81fbfb20d0553fda"
-    },
-    {
-        name: "Cinema 7",
-        showtime: ["07:30","14:30","20:00"],
-        movie: "60c062b061711c2698b043e6",
-        cinema: "60c09f0f81fbfb20d0553fda"
-    },
-    {
-        name: "Cinema 8",
-        showtime: ["09:00","14:00","18:00"],
-        movie: "60c062b061711c2698b043e7",
-        cinema: "60c09f0f81fbfb20d0553fda"
-    },
-    {
-        name: "Cinema 9",
-        showtime: ["09:30","16:00","21:00"],
-        movie: "60c062b061711c2698b043e8",
         cinema: "60c09f0f81fbfb20d0553fda"
     },
     //rose cinema
     {
         name: "Cinema 1",
-        showtime: ["08:00","15:00","20:00"],
         movie: "60c062b061711c2698b043e0",
         cinema: "60c09f0f81fbfb20d0553fdb"
     },
     {
         name: "Cinema 2",
-        showtime: ["08:00","15:00","20:00"],
-        movie: "60c062b061711c2698b043e6",
+        movie: "60c062b061711c2698b043e2",
         cinema: "60c09f0f81fbfb20d0553fdb"
     },
     {
         name: "Cinema 3",
-        showtime: ["09:00","14:00","18:00"],
-        movie: "60c062b061711c2698b043e7",
+        movie: "60c062b061711c2698b043e5",
         cinema: "60c09f0f81fbfb20d0553fdb"
     },
     {
         name: "Cinema 4",
-        showtime: ["09:00","14:00","18:00"],
-        movie: "60c062b061711c2698b043e8",
+        movie: "60c062b061711c2698b043e6",
         cinema: "60c09f0f81fbfb20d0553fdb"
     },
     {
         name: "Cinema 5",
-        showtime: ["09:00","14:00","18:00"],
-        movie: "60c062b061711c2698b043e3",
-        cinema: "60c09f0f81fbfb20d0553fdb"
-    },
-    {
-        name: "Cinema 6",
-        showtime: ["08:00","15:00","20:00"],
-        movie: "60c062b061711c2698b043e4",
+        movie: "60c062b061711c2698b043e7",
         cinema: "60c09f0f81fbfb20d0553fdb"
     },
     //maria cinema
     {
         name: "Cinema 1",
-        showtime: ["09:30","16:00","21:00"],
-        movie: "60c062b061711c2698b043e7",
-        cinema: "60c09f0f81fbfb20d0553fdc"
-    },
-    {
-        name: "Cinema 2",
-        showtime: ["09:30","16:00","21:00"],
         movie: "60c062b061711c2698b043e8",
         cinema: "60c09f0f81fbfb20d0553fdc"
     },
     {
-        name: "Cinema 3",
-        showtime: ["09:00","14:00","18:00"],
+        name: "Cinema 2",
         movie: "60c062b061711c2698b043e1",
         cinema: "60c09f0f81fbfb20d0553fdc"
     },
     {
+        name: "Cinema 3",
+        movie: "60c062b061711c2698b043e0",
+        cinema: "60c09f0f81fbfb20d0553fdc"
+    },
+    {
         name: "Cinema 4",
-        showtime: ["09:00","14:00","18:00"],
         movie: "60c062b061711c2698b043e2",
+        cinema: "60c09f0f81fbfb20d0553fdc"
+    },
+    {
+        name: "Cinema 5",
+        movie: "60c062b061711c2698b043e3",
         cinema: "60c09f0f81fbfb20d0553fdc"
     }
 ];
@@ -302,6 +264,645 @@ const cinemalist = [
     }
 ];
 
+const seatlist = [
+    {
+        name: "A1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "A10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "B10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "C10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "D10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "E10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "F10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G1",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G2",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G3",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G4",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G5",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G6",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G7",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G8",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G9",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    },
+    {
+        name: "G10",
+        img: "/images/normalseat.jpg",
+        type: "Normal",
+        price: 10
+    }
+];
+const showtimelist = [
+    //sina cinema 1
+    {
+        time: "07:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f0"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f0"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f0"
+    },
+    //sina cinema 2
+    {
+        time: "07:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f1"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f1"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f1"
+    },
+    //sina cinema 3
+    {
+        time: "07:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f2"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f2"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f2"
+    },
+    //sina cinema 4
+    {
+        time: "07:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f3"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f3"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f3"
+    },
+    //sina cinema 5
+    {
+        time: "07:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f4"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f4"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f4"
+    },
+    //rose cinema 1
+    {
+        time: "08:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f5"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f5"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f5"
+    },
+    //rose cinema 2
+    {
+        time: "08:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f6"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f6"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f6"
+    },
+    //rose cinema 3
+    {
+        time: "08:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f7"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f7"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f7"
+    },
+    //rose cinema 4
+    {
+        time: "08:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f8"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f8"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f8"
+    },
+    //rose cinema 5
+    {
+        time: "08:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f9"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f9"
+    },
+    {
+        time: "22:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4f9"
+    },
+    //maria cinema 1
+    {
+        time: "09:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fa"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fa"
+    },
+    //maria cinema 2
+    {
+        time: "09:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fb"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fb"
+    },
+    //maria cinema 3
+    {
+        time: "09:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fc"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fc"
+    },
+    //maria cinema 4
+    {
+        time: "09:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fd"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fd"
+    },
+    //maria cinema 5
+    {
+        time: "09:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fe"
+    },
+    {
+        time: "14:30",
+        seats: seatlist,
+        theatre: "60c36f47a9f4ca0ab0d8c4fe"
+    }
+];
 function zeedDB(){
     // Movie.remove({}, function(err){
     //     if(err){
@@ -351,13 +952,29 @@ function zeedDB(){
     //         });
     //     }
     // });
-    Theatre.remove({}, function(err){
+    // Theatre.remove({}, function(err){
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         console.log('Remove completed');
+    //         theatrelist.forEach(function(zeed){
+    //             Theatre.create(zeed, function(err, theatre){
+    //                 if(err){
+    //                     console.log(err);
+    //                 }else{
+    //                     console.log('Add completed');
+    //                 }    
+    //             });
+    //         });
+    //     }
+    // });
+    Showtime.remove({}, function(err){
         if(err){
             console.log(err);
         }else{
             console.log('Remove completed');
-            theatrelist.forEach(function(zeed){
-                Theatre.create(zeed, function(err, theatre){
+            showtimelist.forEach(function(zeed){
+                Showtime.create(zeed, function(err, showtime){
                     if(err){
                         console.log(err);
                     }else{

@@ -1,0 +1,137 @@
+<%- include('../partials/header.ejs') %>
+<% let seatArr = seatselect.split(','); %>
+<% let sumprice = 0; %>
+<div class="container p-5">
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Your seats list</span>
+                <span class="badge bg-primary rounded-pill"><%= seatArr.length %></span>
+            </h4>
+            <ul class="list-group mb-3">
+                <% seatArr.forEach(function(seatselected){ %>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0"><%= seatselected %></h6>
+                        </div>
+                        <span class="text-muted">10 $</span>
+                        <% sumprice += 10; %>
+                    </li>
+                <% }); %>    
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong><%= sumprice %><span> $</span></strong>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Billing information</h4>
+            <form class="needs-validation" action="/movies/ticketing/<%= showtime._id %>" method="POST" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="user[firstname]" value="<%= currentUser.firstname %>" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                    </div>
+  
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="lastName"  name="user[lastname]" value="<%= currentUser.lastname %>" required>
+                        <div class="invalid-feedback">
+                            Valid last name is required.
+                        </div>
+                    </div>
+  
+                    <div class="col-12">
+                        <label for="username" class="form-label">Username</label>
+                        <div class="input-group has-validation">
+                            <input type="text" class="form-control" id="username" name="user[username]" value="<%= currentUser.username %>" required>
+                            <div class="invalid-feedback">
+                                Your username is required.
+                            </div>
+                        </div>
+                    </div>
+  
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="user[email]" value="<%= currentUser.email %>" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                        </div>
+                    </div>
+                </div>
+  
+                <hr class="my-4">
+
+                <h4 class="mb-3">Payment</h4>
+  
+                <div class="my-3">
+                    <div class="form-check">
+                        <input id="credit" name="paymentMethod" type="radio" class="form-check-input" value="credit" required="">
+                        <label class="form-check-label" for="credit">Credit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="debit" name="paymentMethod" type="radio" class="form-check-input" value="debit" required="">
+                        <label class="form-check-label" for="debit">Debit card</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" value="paypal" required="">
+                        <label class="form-check-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+  
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        <label for="cc-name" class="form-label">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" name="nameoncard" required>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+  
+                    <div class="col-md-6">
+                        <label for="cc-number" class="form-label">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" name="creditno" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+  
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" name="exp" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+  
+                    <div class="col-md-3">
+                        <label for="cc-cvv" class="form-label">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" name="cvv" required>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+                </div>
+  
+                <br>
+
+                <!-- <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="save-info">
+                    <label class="form-check-label" for="save-info">Save this information for next time</label>
+                </div> -->
+  
+                <hr class="my-4">
+                <% console.log(seatselect) %>
+                <input type="hidden" name="seatselect" value="<%= seatselect %>">
+                <input type="hidden" name="sumprice" value="<%= sumprice %>">
+                <button class="w-100 btn btn-dark btn-lg" type="submit">Continue to checkout</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<%- include('../partials/footer.ejs') %>
