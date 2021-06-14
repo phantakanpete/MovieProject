@@ -48,7 +48,14 @@ router.get('/search', function(req, res){
         if(err){
             req.flash('error', 'Your result not found.');
         }else{
-            res.render('movie/moviedetail.ejs', {movies: foundMovie});
+            Favourite.find({movie: foundMovie._id}, function(err, foundFavourite){
+                if(err){
+                    req.flash('error', err.message);
+                    res.redirect('/movies');
+                }else{
+                    res.render('movie/moviedetail.ejs', {movies: foundMovie, favourite: foundFavourite});
+                }
+            });
         }
     });
 });
@@ -110,7 +117,7 @@ router.get('/user/:id', function(req, res){
                         if(err){
                             req.flash('error', 'Something went wrong.');
                         }else{
-                            Favourite.find({movie: foundMovie._id, user: foundUser._id}, function(err, foundFavourite){
+                            Favourite.find({user: foundUser._id}, function(err, foundFavourite){
                                 if(err){
                                     req.flash('error', 'Something went wrong.')
                                     res.redirect('/');
@@ -145,7 +152,7 @@ router.get('/user/edit/:id', function(req, res){
 });
 
 //updateuserinfo
-router.put('/user/:id', upload.single('profileimg'), function(req, res){
+router.put('/user/:id', upload.single('image'), function(req, res){
     if(req.file){
         req.body.user.profileimg = '/uploads/'+ req.file.filename;
     }

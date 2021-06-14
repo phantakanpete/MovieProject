@@ -23,7 +23,7 @@
             <a class="nav-link text-dark active" id="movhistory" href="#">Movie history</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" id="likemovie" href="#">Liked movie</a>
+            <a class="nav-link text-dark" id="likemovie" href="#">Your favourite movie</a>
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" id="mycomment" href="#">My comment</a>
@@ -46,29 +46,35 @@
                             <li><a class="dropdown-item" href="#">See info</a></li>
                         </ul>
                     </div>
-                    <strong>Bill number : <span><%= billnum %></span></strong>
+                    <strong>Bill no : <span><%= billnum %></span></strong>
                     <p>ID : <span><%= bill._id %></span></p>
                 </div>
             </div> 
         <% }); %>    
     </div>
     <div class="d-none p-3" id="two">
-        <% console.log(favourite) %>
-        <% favourite.forEach(function(favourite){ %>
-            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
-                <div class="col">
-                    <div class="card h-100">
-                        <a href="/movies/<%= favourite.movie._id%>" class="text-decoration-none">
-                            <img src="<%= favourite.movie.image %>" class="card-img-top">
-                            <div class="card-body text-dark text-center">
-                                <h5 class="card-title"><%= favourite.movie.name %></h5>
-                                <p class="card-text"><%= favourite.movie.reldate %></p>
+        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
+            <% favourite.forEach(function(ufavourite){ %>
+                <% ufavourite.movie.forEach(function(umovie){ %>
+                    <% movies.forEach(function(movielist){ %>
+                        <% if(umovie.equals(movielist._id)){ %>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <a href="/movies/<%= movielist._id%>" class="text-decoration-none">
+                                        <img src="<%= movielist.image %>" class="card-img-top">
+                                        <div class="card-body text-dark text-center">
+                                            <h5 class="card-title"><%= movielist.name %></h5>
+                                            <p class="card-text"><%= movielist.reldate %></p>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        <% }); %>
+                        <% } %>
+                    <% }); %>      
+                <% }); %>    
+            <% }); %>
+        </div>
+        <br>
     </div>
     <div class="d-none p-3" id="three">
         <% comments.forEach(function(comment){ %>
@@ -77,7 +83,7 @@
                     <% if(comments._id.equals(comment._id)){ %>
                         <div class="d-flex shadow-sm rounded p-2">
                             <div class="flex-shrink-0">
-                                <img src="<%= comment.author.profileimg %>" class="rounded-circle" width="50px">
+                                <i class="fas fa-comment"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <div class="dropdown float-end">
@@ -89,8 +95,10 @@
                                         <li><a class="dropdown-item" href="/movies/<%= comment._id %>/edit">Edit - Delete</a></li>
                                     </ul>
                                 </div>
-                                <strong><%= comment.author.username + ' : ' %></strong>
-                                <p><%= comment.text %></p>
+                                <div class="d-flex">
+                                    <strong><%= comment.author.username + ' : ' %></strong>
+                                    <p class="px-2"><%= comment.text %></p>
+                                </div>
                             </div>
                         </div> 
                     <% } %>  

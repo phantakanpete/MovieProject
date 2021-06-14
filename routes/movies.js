@@ -56,17 +56,17 @@ router.get('/sortBygenre', function(req, res){
 });
 
 //moviedetails
-router.get('/:id', middleware.isLoggedIn, function(req, res){
+router.get('/:id', function(req, res){
     Movie.findById(req.params.id).populate('comments').exec(function(err, foundMovie){
         if(err){
             req.flash('error', err.message);
         }else{
-            Favourite.findOne({movie: req.params.id, user: req.user._id}, function(err, favourite){
+            Favourite.find({movie: foundMovie._id}, function(err, foundFavourite){
                 if(err){
                     req.flash('error', err.message);
                     res.redirect('/movies');
                 }else{
-                    res.render('movie/moviedetail.ejs', {movies: foundMovie, favourite: favourite});
+                    res.render('movie/moviedetail.ejs', {movies: foundMovie, favourite: foundFavourite});
                 }
             });
         }
@@ -273,7 +273,7 @@ router.delete('/:id/favourite', middleware.isLoggedIn, function(req, res){
             res.redirect('/movies');
         }else{
             req.flash('success', 'Remove from favourite succeed.');
-            res.redirect('/movies');
+            res.redirect('/movies/' + req.body.movies);
         }
     });
 });
