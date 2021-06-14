@@ -1,0 +1,29 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container p-5">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static text-primary">
+            <h1 class="display-3 text-dark">Billing info</h1>
+            <hr>
+            <p>Username: <span class="text-dark"><%= bill.user.username %></span></p>
+            <p>Name: <span class="text-dark"><%= bill.user.firstname %> <%= bill.user.lastname %></span></p>
+            <p>Email: <span class="text-dark"><%= bill.user.email %></span></p>
+            <p>Showtime: <span class="text-dark"><%= showtime.time %></span></p>
+            <div class="d-flex">
+                <p>Selected seat: </p>
+                <% bill.seatselect.forEach(function(seatselect){ %>
+                    <p class="text-dark px-1"><%= seatselect %></p>
+                <% }); %>
+            </div>
+            <p>Total price: <span class="text-dark">$<%= bill.totalprice %></span></p>
+            <p>Payment time: <span class="text-dark"><%= bill.time %></span></p>
+            <p>Payment type: <span class="text-dark"><%= bill.payment.ptype %></span></p>
+            <p>Card number: <span class="text-dark"><%= bill.payment.creditno %></span></p>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img src="https://st2.depositphotos.com/2633985/5535/v/600/depositphotos_55355045-stock-illustration-close-and-open-movie-clapper.jpg"> 
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

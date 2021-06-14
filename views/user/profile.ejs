@@ -9,6 +9,7 @@
             <img src="<%= user.profileimg %>" class="rounded-circle py-2" width="200px">
             <br><a href="/user/edit/<%= user._id %>" class="btn btn-outline-dark btn-sm">Edit proflie</a>
         </div>  
+        
         <div class="col-10 col-sm-8">
             <div class="py-3">    
                 <h2><%= user.firstname + ' ' + user.lastname %></h2>
@@ -18,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <ul class="nav nav-tabs px-3">
         <li class="nav-item">
             <a class="nav-link text-dark active" id="movhistory" href="#">Movie history</a>
@@ -29,10 +31,10 @@
             <a class="nav-link text-dark" id="mycomment" href="#">My comment</a>
         </li>
     </ul>
+
     <div class="p-3" id="one">
-        <% let billnum = 0; %>
         <% bill.forEach(function(bill){ %>
-            <% billnum += 1; %>
+            <% bill.showtime.forEach(function(showtime){ %>
             <div class="d-flex shadow-sm rounded p-2">
                 <div class="flex-shrink-0">
                     <i class="fas fa-wallet"></i>
@@ -43,15 +45,17 @@
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">See info</a></li>
+                            <li><a class="dropdown-item" href="/bill/<%= bill._id %>/<%= showtime._id %>">See info</a></li>
                         </ul>
                     </div>
-                    <strong>Bill no : <span><%= billnum %></span></strong>
-                    <p>ID : <span><%= bill._id %></span></p>
+                    <strong>Bill id : <span><%= bill._id %></span></strong>
+                    <p>Date : <span><%= bill.time %></span></p>
                 </div>
             </div> 
+            <% }); %>
         <% }); %>    
     </div>
+
     <div class="d-none p-3" id="two">
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
             <% favourite.forEach(function(ufavourite){ %>
@@ -74,8 +78,8 @@
                 <% }); %>    
             <% }); %>
         </div>
-        <br>
     </div>
+
     <div class="d-none p-3" id="three">
         <% comments.forEach(function(comment){ %>
             <% movies.forEach(function(movie){ %>
@@ -105,7 +109,8 @@
                 <% }); %>       
             <% }); %>           
         <% }); %>
-    </div>
+    </div> 
 </div>
+<br>
 
 <%- include('../partials/footer.ejs') %>

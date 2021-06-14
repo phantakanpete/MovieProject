@@ -3,8 +3,9 @@ const express       = require('express'),
       Movie         = require('../models/movie'),
       Promotion     = require('../models/promotion'),
       Comment       = require('../models/comment'),
-      Favourite       = require('../models/favourite'),
-      Bill       = require('../models/bill'),
+      Favourite     = require('../models/favourite'),
+      Bill          = require('../models/bill'),
+      Showtime          = require('../models/showtime'),
       User          = require('../models/user'),
       multer        = require('multer'),
       path          = require('path'),
@@ -30,10 +31,12 @@ router.get('/', function(req, res){
     Movie.find({}, function(err, movieLists){
         if(err){
             req.flash('error', err.message);
+            res.redirect('/');
         }else{
             Promotion.find({}, function(err, promoLists){
                 if(err){
                     req.flash('error', err.message);
+                    res.redirect('/');
                 }else{
                     res.render('home.ejs', {movies: movieLists, promotions: promoLists});
                 }
@@ -46,7 +49,8 @@ router.get('/', function(req, res){
 router.get('/search', function(req, res){
     Movie.findOne({name: req.query.keyword}).populate('comments').exec(function(err, foundMovie){
         if(err){
-            req.flash('error', 'Your result not found.');
+            req.flash('error', err.message);
+            res.redirect('/movies');
         }else{
             Favourite.find({movie: foundMovie._id}, function(err, foundFavourite){
                 if(err){
@@ -116,6 +120,7 @@ router.get('/user/:id', function(req, res){
                     Movie.find({}).populate('comments').exec(function(err, foundMovie){
                         if(err){
                             req.flash('error', 'Something went wrong.');
+                            res.redirect('/');
                         }else{
                             Favourite.find({user: foundUser._id}, function(err, foundFavourite){
                                 if(err){
@@ -127,6 +132,7 @@ router.get('/user/:id', function(req, res){
                                             req.flash('error', 'Something went wrong.')
                                             res.redirect('/');
                                         }else{
+                                            foundBill.sort((a, b) => (a.time > b.time) ? -1 : 1);
                                             res.render('user/profile.ejs', {user: foundUser, comments: foundComment, movies: foundMovie, favourite: foundFavourite, bill: foundBill});
                                         }
                                     });
@@ -161,17 +167,26 @@ router.put('/user/:id', upload.single('image'), function(req, res){
             req.flash('error', 'Edit failed.');
             res.redirect('/');
         }else{
-            // Comment.findByIdAndUpdate({'author.id': updatedUserInfo._id}, function(err, updatedAuthorInfo){
-            //     if(err){
-            //         req.flash('error', 'Something went wrong.');
-            //         res.redirect('/');
-            //     }else{
-            //         req.flash('success', 'Edit success.');
-            //         res.redirect('/user/'+req.params.id);
-            //     }
-            // });
             req.flash('success', 'Edit success.');
             res.redirect('/user/'+req.params.id);
+        }
+    });
+});
+
+router.get('/bill/:id/:showtime', function(req, res){
+    Bill.findById(req.params.id, function(err, foundBill){
+        if(err){
+            req.flash('error', err.message);
+            res.redirect('/');
+        }else{
+            Showtime.findById(req.params.showtime, function(err, foundShowtime){
+                if(err){
+                    req.flash('error', err.message);
+                    res.redirect('/'); 
+                }else{
+                    res.render('ticket/bill.ejs', {bill: foundBill, showtime: foundShowtime});
+                }
+            });
         }
     });
 });

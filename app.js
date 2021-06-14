@@ -14,7 +14,6 @@ const   express         = require('express'),
         
 const   homeRoutes      = require('./routes/home'),
         movieRoutes     = require('./routes/movies'),
-        commentRoutes   = require('./routes/comments'),
         cinemaRoutes    = require('./routes/cinemas'),
         promoRoutes     = require('./routes/promotions');
 
@@ -49,7 +48,6 @@ app.use(function(req, res, next){
 
 app.use('/', homeRoutes);
 app.use('/movies', movieRoutes);
-app.use('/movies/:id/comments', commentRoutes);
 app.use('/cinemas', cinemaRoutes);
 app.use('/promotions', promoRoutes);
 

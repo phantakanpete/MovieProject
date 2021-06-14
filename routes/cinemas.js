@@ -6,6 +6,7 @@ router.get('/', function(req, res){
     Cinema.find({}, function(err, cinemaLists){
         if(err){
             req.flash('error', 'Something went wrong.');
+            res.redirect('/');
         }else{
             res.render('cinema/cinemas.ejs', {cinema: cinemaLists});
         }
